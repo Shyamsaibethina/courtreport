@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C0839A589A87281FEDA2C3EC /* Pods_TennisHelperV2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70EFE2B4610D533A4BBDFF5C /* Pods_TennisHelperV2.framework */; };
+		E205F3BA27A1BA83006263F2 /* BracketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E205F3B827A1BA83006263F2 /* BracketView.swift */; };
+		E205F3BC27A33826006263F2 /* CourtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E205F3BB27A33826006263F2 /* CourtsView.swift */; };
+		E205F3BE27A3402A006263F2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E205F3BD27A3402A006263F2 /* LocationManager.swift */; };
+		E205F3C227A43432006263F2 /* Markers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E205F3C127A43432006263F2 /* Markers.swift */; };
+		E205F3C427A434FF006263F2 /* MarkerAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E205F3C327A434FF006263F2 /* MarkerAnnotation.swift */; };
+		E26A517D27BAA1B200A7BB68 /* Courts.csv in Resources */ = {isa = PBXBuildFile; fileRef = E26A517C27BAA1B200A7BB68 /* Courts.csv */; };
+		E28B645227B0B52E00634073 /* webscraping.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B645127B0B52E00634073 /* webscraping.swift */; };
+		E29454DF27AAD52600AB6162 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29454DE27AAD52600AB6162 /* MapView.swift */; };
 		E2CF6A6327A1B72E0085F3EF /* TennisHelperV2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF6A6227A1B72E0085F3EF /* TennisHelperV2App.swift */; };
 		E2CF6A6527A1B72E0085F3EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF6A6427A1B72E0085F3EF /* ContentView.swift */; };
 		E2CF6A6727A1B72F0085F3EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2CF6A6627A1B72F0085F3EF /* Assets.xcassets */; };
@@ -14,6 +23,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		70EFE2B4610D533A4BBDFF5C /* Pods_TennisHelperV2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TennisHelperV2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		928F494B2F030705C97A3E58 /* Pods-TennisHelperV2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TennisHelperV2.release.xcconfig"; path = "Target Support Files/Pods-TennisHelperV2/Pods-TennisHelperV2.release.xcconfig"; sourceTree = "<group>"; };
+		A01AE116BAB396CD8B331337 /* Pods-TennisHelperV2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TennisHelperV2.debug.xcconfig"; path = "Target Support Files/Pods-TennisHelperV2/Pods-TennisHelperV2.debug.xcconfig"; sourceTree = "<group>"; };
+		E205F3B827A1BA83006263F2 /* BracketView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BracketView.swift; sourceTree = "<group>"; };
+		E205F3BB27A33826006263F2 /* CourtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourtsView.swift; sourceTree = "<group>"; };
+		E205F3BD27A3402A006263F2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		E205F3C127A43432006263F2 /* Markers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Markers.swift; sourceTree = "<group>"; };
+		E205F3C327A434FF006263F2 /* MarkerAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerAnnotation.swift; sourceTree = "<group>"; };
+		E26A517C27BAA1B200A7BB68 /* Courts.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Courts.csv; sourceTree = "<group>"; };
+		E28B645127B0B52E00634073 /* webscraping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = webscraping.swift; sourceTree = "<group>"; };
+		E29454DE27AAD52600AB6162 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E2CF6A5F27A1B72E0085F3EF /* TennisHelperV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TennisHelperV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2CF6A6227A1B72E0085F3EF /* TennisHelperV2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TennisHelperV2App.swift; sourceTree = "<group>"; };
 		E2CF6A6427A1B72E0085F3EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -26,17 +46,67 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0839A589A87281FEDA2C3EC /* Pods_TennisHelperV2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12C46F48F30CBD7761855E5E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				70EFE2B4610D533A4BBDFF5C /* Pods_TennisHelperV2.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3CC88712A79DF83BF7BB555F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A01AE116BAB396CD8B331337 /* Pods-TennisHelperV2.debug.xcconfig */,
+				928F494B2F030705C97A3E58 /* Pods-TennisHelperV2.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E205F3BF27A433E9006263F2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E205F3BB27A33826006263F2 /* CourtsView.swift */,
+				E2CF6A6427A1B72E0085F3EF /* ContentView.swift */,
+				E205F3B827A1BA83006263F2 /* BracketView.swift */,
+				E29454DE27AAD52600AB6162 /* MapView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E205F3C027A43405006263F2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E205F3BD27A3402A006263F2 /* LocationManager.swift */,
+				E205F3C127A43432006263F2 /* Markers.swift */,
+				E205F3C327A434FF006263F2 /* MarkerAnnotation.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E29454E227AAE14900AB6162 /* Webscraping */ = {
+			isa = PBXGroup;
+			children = (
+				E26A517C27BAA1B200A7BB68 /* Courts.csv */,
+				E28B645127B0B52E00634073 /* webscraping.swift */,
+			);
+			path = Webscraping;
+			sourceTree = "<group>";
+		};
 		E2CF6A5627A1B72D0085F3EF = {
 			isa = PBXGroup;
 			children = (
 				E2CF6A6127A1B72E0085F3EF /* TennisHelperV2 */,
 				E2CF6A6027A1B72E0085F3EF /* Products */,
+				3CC88712A79DF83BF7BB555F /* Pods */,
+				12C46F48F30CBD7761855E5E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,7 +122,9 @@
 			isa = PBXGroup;
 			children = (
 				E2CF6A6227A1B72E0085F3EF /* TennisHelperV2App.swift */,
-				E2CF6A6427A1B72E0085F3EF /* ContentView.swift */,
+				E29454E227AAE14900AB6162 /* Webscraping */,
+				E205F3BF27A433E9006263F2 /* Views */,
+				E205F3C027A43405006263F2 /* Models */,
 				E2CF6A6627A1B72F0085F3EF /* Assets.xcassets */,
 				E2CF6A6827A1B72F0085F3EF /* Preview Content */,
 			);
@@ -74,9 +146,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E2CF6A6D27A1B72F0085F3EF /* Build configuration list for PBXNativeTarget "TennisHelperV2" */;
 			buildPhases = (
+				797788A0815568AD17C53FFA /* [CP] Check Pods Manifest.lock */,
 				E2CF6A5B27A1B72E0085F3EF /* Sources */,
 				E2CF6A5C27A1B72E0085F3EF /* Frameworks */,
 				E2CF6A5D27A1B72E0085F3EF /* Resources */,
+				E756038C7816897BAF9D2734 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -127,18 +201,68 @@
 			files = (
 				E2CF6A6A27A1B72F0085F3EF /* Preview Assets.xcassets in Resources */,
 				E2CF6A6727A1B72F0085F3EF /* Assets.xcassets in Resources */,
+				E26A517D27BAA1B200A7BB68 /* Courts.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		797788A0815568AD17C53FFA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TennisHelperV2-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E756038C7816897BAF9D2734 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TennisHelperV2/Pods-TennisHelperV2-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TennisHelperV2/Pods-TennisHelperV2-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TennisHelperV2/Pods-TennisHelperV2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E2CF6A5B27A1B72E0085F3EF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E205F3BC27A33826006263F2 /* CourtsView.swift in Sources */,
 				E2CF6A6527A1B72E0085F3EF /* ContentView.swift in Sources */,
+				E28B645227B0B52E00634073 /* webscraping.swift in Sources */,
 				E2CF6A6327A1B72E0085F3EF /* TennisHelperV2App.swift in Sources */,
+				E205F3BA27A1BA83006263F2 /* BracketView.swift in Sources */,
+				E205F3C227A43432006263F2 /* Markers.swift in Sources */,
+				E29454DF27AAD52600AB6162 /* MapView.swift in Sources */,
+				E205F3C427A434FF006263F2 /* MarkerAnnotation.swift in Sources */,
+				E205F3BE27A3402A006263F2 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +387,7 @@
 		};
 		E2CF6A6E27A1B72F0085F3EF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A01AE116BAB396CD8B331337 /* Pods-TennisHelperV2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -272,6 +397,7 @@
 				DEVELOPMENT_TEAM = 8R22HSVT7Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your location so that it can determine the closest courts near you.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -292,6 +418,7 @@
 		};
 		E2CF6A6F27A1B72F0085F3EF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 928F494B2F030705C97A3E58 /* Pods-TennisHelperV2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -301,6 +428,7 @@
 				DEVELOPMENT_TEAM = 8R22HSVT7Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your location so that it can determine the closest courts near you.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
