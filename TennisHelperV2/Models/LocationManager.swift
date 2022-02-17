@@ -6,7 +6,6 @@
 //
 
 import MapKit
-import Foundation
 
 enum MapDetails{
     static let startingLocation = CLLocationCoordinate2D(latitude: 37.331516, longitude: -121.891054)

@@ -40,8 +40,10 @@ struct Coordinate: Codable {
     }
 }
 
-func loadCSV(from csvName: String) -> [Court] {
+func loadCSV(from csvName: String, miles: Double, viewModel: MapViewModel) -> [Court] {
     var csvToStruct = [Court]()
+    
+    let user = CLLocation(latitude: viewModel.region.center.latitude, longitude: viewModel.region.center.longitude)
 
     //locat the csv file
     guard let filePath = Bundle.main.path(forResource: csvName, ofType: "csv") else {
@@ -64,14 +66,20 @@ func loadCSV(from csvName: String) -> [Court] {
     //remove header rows
     rows.removeFirst()
 
-    print(rows)
-
+    
+    
     //now loop around each row and split into columns
     for row in rows[..<(rows.count-1)] {
         let csvColumns = row.components(separatedBy: ",")
         let teamStruct = Court.init(raw:csvColumns)
-        csvToStruct.append(teamStruct)
-        print(teamStruct)
+        
+        let courtLocation = CLLocation(latitude: teamStruct.coordinate.latitude, longitude: teamStruct.coordinate.longitude)
+        
+        let distance = user.distance(from: courtLocation)
+        
+        if distance <= (miles*1609.34){
+            csvToStruct.append(teamStruct)
+        }
     }
 
     return csvToStruct
