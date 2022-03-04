@@ -8,56 +8,60 @@
 import SwiftUI
 import MapKit
 import Foundation
-import CoreLocation
+import CoreLocationUI
 
 struct MapView: View {
-    
-    
-    @StateObject private var viewModel = MapViewModel()
-    
-    
 
-    
-    func addAnnotationInRadius(radius: Double, courts: [Court]) -> [Court]{
-        let user = CLLocation(latitude: viewModel.region.center.latitude, longitude: viewModel.region.center.longitude)
-        
-        var filterCourts = [Court]()
-        
-        for court in courts {
-            let courtLocation = CLLocation(latitude: court.coordinate.latitude, longitude: court.coordinate.longitude)
-            
-            let distance = user.distance(from: courtLocation)
-            
-            if distance <= radius{
-                filterCourts.append(court)
-            }
-        
-        }
-        return filterCourts
-    }
-    
-    
-        
-    
-    
-    
+    @StateObject private var viewModel = MapViewModel()
+    @State private var count = 0
+    //@StateObject private var regionWrapper = RegionWrapper()
+
     var body: some View {
-        let courts = loadCSV(from: "Courts", miles: 10, viewModel: viewModel)
+        let courts = loadCSV(from: "Courts", miles: 20, viewModel: viewModel)
         
-        
-        Map(coordinateRegion: .constant(viewModel.region), showsUserLocation: true, annotationItems: courts){
-            court in
-            MapAnnotation(coordinate: court.coordinate.locationCoordinate()) {
-               Image("Court icon")
-                   .resizable()
-                   .frame(width: 32, height: 32)
-           }
-        }
-        .onAppear{
-            viewModel.checkIfLocationServicesIsEnabled()
+        ZStack(alignment: .topTrailing){
+            Map(coordinateRegion: .constant(viewModel.region), showsUserLocation: true, userTrackingMode: .constant(.follow), annotationItems: courts){
+                court in
+                MapAnnotation(coordinate: court.coordinate.locationCoordinate()) {
+                    NavigationLink(destination: CourtInfo(court: court), label: {
+                                    ZStack{
+                                        Circle()
+                                            .foregroundColor(court.indoor=="TRUE" ? .orange : .white)
+                                            .frame(width: 35, height: 35)
+                                        
+                                        Image("Court icon")
+                                            .resizable()
+                                            .offset(y:3)
+                                    }
+                                    .frame(width: 75, height: 75)
+                                })
+                        
+                }
+            }.onAppear{
+                if count==0{
+                    viewModel.checkIfLocationServicesIsEnabled()
+                    count+=1
+                }
+                //updateRegion(newRegion: viewModel.region)
+            }
+
+            LocationButton(.currentLocation) {
+                viewModel.checkIfLocationServicesIsEnabled()
+            }
+            .foregroundColor(.white)
+            .cornerRadius(8)
+            .labelStyle(.iconOnly)
+            .symbolVariant(.fill)
+            .padding(10)
         }
     }
-    
+
+//    func updateRegion(newRegion: MKCoordinateRegion) {
+//        withAnimation{
+//            regionWrapper.region.wrappedValue = newRegion
+//            regionWrapper.flag.toggle()
+//        }
+//    }
 }
 
 struct MapView_Previews: PreviewProvider {
@@ -65,6 +69,22 @@ struct MapView_Previews: PreviewProvider {
         MapView()
     }
 }
+
+//class RegionWrapper: ObservableObject {
+//
+//
+//
+//    var _region: MKCoordinateRegion = MKCoordinateRegion(center: MapDetails.startingLocation, span: MapDetails.defaultSpan)
+//
+//    var region: Binding<MKCoordinateRegion> {
+//        Binding(
+//            get: { self._region },
+//            set: { self._region = $0 }
+//        )
+//    }
+//
+//    @Published var flag = false
+//}
 
 
 

@@ -1,0 +1,20 @@
+PODS:
+  - KRTournamentView (2.0.0)
+  - SwiftSoup (2.3.8)
+
+DEPENDENCIES:
+  - KRTournamentView
+  - SwiftSoup
+
+SPEC REPOS:
+  trunk:
+    - KRTournamentView
+    - SwiftSoup
+
+SPEC CHECKSUMS:
+  KRTournamentView: 7753c8d0bca45bfb758eb112e73d8e242001700c
+  SwiftSoup: ba8ea2c91151881a298cba4b0628ef31e835a77f
+
+PODFILE CHECKSUM: 6b27f3419058467aeb17826fe14b2d82f1feb3a3
+
+COCOAPODS: 1.11.2

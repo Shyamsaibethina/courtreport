@@ -6,6 +6,7 @@
 //
 
 import MapKit
+import SwiftUI
 
 enum MapDetails{
     static let startingLocation = CLLocationCoordinate2D(latitude: 37.331516, longitude: -121.891054)
@@ -25,18 +26,22 @@ class LocationManager: NSObject, ObservableObject {
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.startUpdatingLocation()
     }
+    
+    func getUserCoordinates() -> CLLocationCoordinate2D{
+        locationManager.location!.coordinate
+    }
 }
 
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(  manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         print(status)
     }
-    
+
     func locationManager(  manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else {
             return
         }
-        
+
         self.location = location
     }
 }
@@ -54,12 +59,15 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
     func checkIfLocationServicesIsEnabled() {
         if CLLocationManager.locationServicesEnabled() {
             locationManagar = CLLocationManager()
+            locationManagar?.desiredAccuracy = kCLLocationAccuracyBest
+            locationManagar?.startUpdatingHeading()
+            locationManagar?.startUpdatingLocation()
             locationManagar?.delegate = self
-
-        } else{
+            
 
         }
     }
+
 
      private func checkLocationAuthorization() {
         guard let locationManagar = locationManagar else { return }
@@ -73,8 +81,12 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
             case .denied:
                 print("You've denied location permission")
             case .authorizedAlways, .authorizedWhenInUse:
-                region = MKCoordinateRegion(center: locationManagar.location!.coordinate,
-                                        span: MapDetails.defaultSpan)
+                withAnimation{
+                    self.region = MKCoordinateRegion(center: locationManagar.location!.coordinate,
+                                            span: MapDetails.defaultSpan)
+                }
+                
+                
             @unknown default:
                 break
         }

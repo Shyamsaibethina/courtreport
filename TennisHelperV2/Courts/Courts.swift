@@ -71,7 +71,8 @@ func loadCSV(from csvName: String, miles: Double, viewModel: MapViewModel) -> [C
     //now loop around each row and split into columns
     for row in rows[..<(rows.count-1)] {
         let csvColumns = row.components(separatedBy: ",")
-        let teamStruct = Court.init(raw:csvColumns)
+        var teamStruct = Court.init(raw:csvColumns)
+        teamStruct.name = teamStruct.name.replacingOccurrences(of: "\"", with: "")
         
         let courtLocation = CLLocation(latitude: teamStruct.coordinate.latitude, longitude: teamStruct.coordinate.longitude)
         

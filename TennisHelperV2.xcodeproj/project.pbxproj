@@ -18,6 +18,7 @@
 		E2CF6A6527A1B72E0085F3EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF6A6427A1B72E0085F3EF /* ContentView.swift */; };
 		E2CF6A6727A1B72F0085F3EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2CF6A6627A1B72F0085F3EF /* Assets.xcassets */; };
 		E2CF6A6A27A1B72F0085F3EF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2CF6A6927A1B72F0085F3EF /* Preview Assets.xcassets */; };
+		E2E9911627C2E68800B075FE /* CourtInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E9911527C2E68800B075FE /* CourtInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		E2CF6A6427A1B72E0085F3EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E2CF6A6627A1B72F0085F3EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2CF6A6927A1B72F0085F3EF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E2E9911527C2E68800B075FE /* CourtInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourtInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				E205F3BD27A3402A006263F2 /* LocationManager.swift */,
+				E2E9911527C2E68800B075FE /* CourtInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 			files = (
 				E205F3BC27A33826006263F2 /* CourtsView.swift in Sources */,
 				E2CF6A6527A1B72E0085F3EF /* ContentView.swift in Sources */,
+				E2E9911627C2E68800B075FE /* CourtInfo.swift in Sources */,
 				E28B645227B0B52E00634073 /* Courts.swift in Sources */,
 				E2CF6A6327A1B72E0085F3EF /* TennisHelperV2App.swift in Sources */,
 				E205F3BA27A1BA83006263F2 /* BracketView.swift in Sources */,
@@ -312,7 +316,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -367,7 +371,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

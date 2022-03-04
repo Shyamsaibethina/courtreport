@@ -21,6 +21,7 @@ struct ContentView: View {
                     Text("Courts")
                 }
         }
+        .preferredColorScheme(.dark)
     }
 }
 
