@@ -14,11 +14,10 @@ struct MapView: View {
 
     @StateObject private var viewModel = MapViewModel()
     @State private var count = 0
-    //@StateObject private var regionWrapper = RegionWrapper()
 
     var body: some View {
-        let courts = loadCSV(from: "Courts", miles: 20, viewModel: viewModel)
-        
+        let courts = loadCSV(miles: 20, viewModel: viewModel)
+        //ADD ANIMATION
         ZStack(alignment: .topTrailing){
             Map(coordinateRegion: .constant(viewModel.region), showsUserLocation: true, userTrackingMode: .constant(.follow), annotationItems: courts){
                 court in
@@ -26,23 +25,21 @@ struct MapView: View {
                     NavigationLink(destination: CourtInfo(court: court), label: {
                                     ZStack{
                                         Circle()
-                                            .foregroundColor(court.indoor=="TRUE" ? .orange : .white)
+                                            .foregroundColor(.white)
                                             .frame(width: 35, height: 35)
                                         
                                         Image("Court icon")
                                             .resizable()
                                             .offset(y:3)
                                     }
-                                    .frame(width: 75, height: 75)
+                                    .frame(width: 70, height: 70)
                                 })
-                        
                 }
             }.onAppear{
                 if count==0{
                     viewModel.checkIfLocationServicesIsEnabled()
                     count+=1
                 }
-                //updateRegion(newRegion: viewModel.region)
             }
 
             LocationButton(.currentLocation) {
@@ -55,13 +52,6 @@ struct MapView: View {
             .padding(10)
         }
     }
-
-//    func updateRegion(newRegion: MKCoordinateRegion) {
-//        withAnimation{
-//            regionWrapper.region.wrappedValue = newRegion
-//            regionWrapper.flag.toggle()
-//        }
-//    }
 }
 
 struct MapView_Previews: PreviewProvider {
@@ -69,22 +59,6 @@ struct MapView_Previews: PreviewProvider {
         MapView()
     }
 }
-
-//class RegionWrapper: ObservableObject {
-//
-//
-//
-//    var _region: MKCoordinateRegion = MKCoordinateRegion(center: MapDetails.startingLocation, span: MapDetails.defaultSpan)
-//
-//    var region: Binding<MKCoordinateRegion> {
-//        Binding(
-//            get: { self._region },
-//            set: { self._region = $0 }
-//        )
-//    }
-//
-//    @Published var flag = false
-//}
 
 
 

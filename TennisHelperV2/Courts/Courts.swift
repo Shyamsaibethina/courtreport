@@ -40,13 +40,13 @@ struct Coordinate: Codable {
     }
 }
 
-func loadCSV(from csvName: String, miles: Double, viewModel: MapViewModel) -> [Court] {
+func loadCSV(miles: Double, viewModel: MapViewModel) -> [Court] {
     var csvToStruct = [Court]()
     
     let user = CLLocation(latitude: viewModel.region.center.latitude, longitude: viewModel.region.center.longitude)
 
     //locat the csv file
-    guard let filePath = Bundle.main.path(forResource: csvName, ofType: "csv") else {
+    guard let filePath = Bundle.main.path(forResource: "Courts", ofType: "csv") else {
         return []
     }
 
