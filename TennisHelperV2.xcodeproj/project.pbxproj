@@ -12,6 +12,7 @@
 		E205F3BC27A33826006263F2 /* CourtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E205F3BB27A33826006263F2 /* CourtsView.swift */; };
 		E205F3BE27A3402A006263F2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E205F3BD27A3402A006263F2 /* LocationManager.swift */; };
 		E26A517D27BAA1B200A7BB68 /* Courts.csv in Resources */ = {isa = PBXBuildFile; fileRef = E26A517C27BAA1B200A7BB68 /* Courts.csv */; };
+		E273C7CF27D7C29D0062054C /* test in Resources */ = {isa = PBXBuildFile; fileRef = E273C7CE27D7C29D0062054C /* test */; };
 		E28B645227B0B52E00634073 /* Courts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28B645127B0B52E00634073 /* Courts.swift */; };
 		E29454DF27AAD52600AB6162 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29454DE27AAD52600AB6162 /* MapView.swift */; };
 		E2CF6A6327A1B72E0085F3EF /* TennisHelperV2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF6A6227A1B72E0085F3EF /* TennisHelperV2App.swift */; };
@@ -29,6 +30,7 @@
 		E205F3BB27A33826006263F2 /* CourtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourtsView.swift; sourceTree = "<group>"; };
 		E205F3BD27A3402A006263F2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E26A517C27BAA1B200A7BB68 /* Courts.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Courts.csv; sourceTree = "<group>"; };
+		E273C7CE27D7C29D0062054C /* test */ = {isa = PBXFileReference; lastKnownFileType = text; path = test; sourceTree = "<group>"; };
 		E28B645127B0B52E00634073 /* Courts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Courts.swift; sourceTree = "<group>"; };
 		E29454DE27AAD52600AB6162 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E2CF6A5F27A1B72E0085F3EF /* TennisHelperV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TennisHelperV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +95,7 @@
 			children = (
 				E26A517C27BAA1B200A7BB68 /* Courts.csv */,
 				E28B645127B0B52E00634073 /* Courts.swift */,
+				E273C7CE27D7C29D0062054C /* test */,
 			);
 			path = Courts;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E273C7CF27D7C29D0062054C /* test in Resources */,
 				E2CF6A6A27A1B72F0085F3EF /* Preview Assets.xcassets in Resources */,
 				E2CF6A6727A1B72F0085F3EF /* Assets.xcassets in Resources */,
 				E26A517D27BAA1B200A7BB68 /* Courts.csv in Resources */,

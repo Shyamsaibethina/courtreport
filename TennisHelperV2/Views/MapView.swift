@@ -14,6 +14,7 @@ struct MapView: View {
 
     @StateObject private var viewModel = MapViewModel()
     @State private var count = 0
+    @State private var appeared = false
 
     var body: some View {
         let courts = loadCSV(miles: 20, viewModel: viewModel)
@@ -23,23 +24,28 @@ struct MapView: View {
                 court in
                 MapAnnotation(coordinate: court.coordinate.locationCoordinate()) {
                     NavigationLink(destination: CourtInfo(court: court), label: {
-                                    ZStack{
-                                        Circle()
-                                            .foregroundColor(.white)
-                                            .frame(width: 35, height: 35)
-                                        
-                                        Image("Court icon")
-                                            .resizable()
-                                            .offset(y:3)
-                                    }
-                                    .frame(width: 70, height: 70)
-                                })
+                        ZStack{
+                            Circle()
+                                .foregroundColor(.white)
+                                .frame(width: 35, height: 35)
+                                            
+                        Image("Court icon")
+                                .resizable()
+                                .offset(y:3)
+                        }
+                            .frame(width: 70, height: 70)
+                    })
+                    .onLongPressGesture{
+                        Text(court.name)
+                    }
                 }
-            }.onAppear{
+            }
+            .onAppear{
                 if count==0{
                     viewModel.checkIfLocationServicesIsEnabled()
                     count+=1
                 }
+                appeared.toggle()
             }
 
             LocationButton(.currentLocation) {

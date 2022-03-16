@@ -54,7 +54,7 @@ func loadCSV(miles: Double, viewModel: MapViewModel) -> [Court] {
     var data = ""
     do {
         data = try String(contentsOfFile: filePath)
-    } catch{
+    } catch {
         print(error)
         return []
     }
