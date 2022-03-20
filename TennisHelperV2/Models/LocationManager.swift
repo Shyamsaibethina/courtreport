@@ -63,7 +63,6 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
             locationManagar?.startUpdatingHeading()
             locationManagar?.startUpdatingLocation()
             locationManagar?.delegate = self
-            
 
         }
     }
@@ -84,6 +83,7 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
                 withAnimation{
                     self.region = MKCoordinateRegion(center: locationManagar.location!.coordinate,
                                             span: MapDetails.defaultSpan)
+                    print("set the region correctly")
                 }
                 
                 

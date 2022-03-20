@@ -13,12 +13,8 @@ struct CourtsView: View {
     @ObservedObject var locationManager = LocationManager()
     
     var body: some View {
-
-
         NavigationView {
-            VStack{
-                MapView()
-            }
+            MapView()
             .navigationTitle("Courts Near You")
         }
 

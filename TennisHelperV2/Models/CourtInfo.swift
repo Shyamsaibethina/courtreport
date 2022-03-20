@@ -69,7 +69,7 @@ struct CourtInfo: View {
                             .italic()
                             .font(.system(size: 50, weight: .bold, design: .rounded))
                             .offset(y: offsetForTime)
-                        Text("minutes")
+                        Text((timeText/60 == 1) ? "minute" : "minutes")
                             .offset(y: offsetForTime)
                 
                     }

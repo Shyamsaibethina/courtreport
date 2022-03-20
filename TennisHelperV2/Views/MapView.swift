@@ -14,7 +14,6 @@ struct MapView: View {
 
     @StateObject private var viewModel = MapViewModel()
     @State private var count = 0
-    @State private var appeared = false
 
     var body: some View {
         let courts = loadCSV(miles: 20, viewModel: viewModel)
@@ -23,30 +22,42 @@ struct MapView: View {
             Map(coordinateRegion: .constant(viewModel.region), showsUserLocation: true, userTrackingMode: .constant(.follow), annotationItems: courts){
                 court in
                 MapAnnotation(coordinate: court.coordinate.locationCoordinate()) {
-                    NavigationLink(destination: CourtInfo(court: court), label: {
+                    NavigationLink(destination: CourtInfo(court: court)){
                         ZStack{
                             Circle()
                                 .foregroundColor(.white)
                                 .frame(width: 35, height: 35)
                                             
-                        Image("Court icon")
+                            Image("Court icon")
                                 .resizable()
                                 .offset(y:3)
                         }
-                            .frame(width: 70, height: 70)
-                    })
-                    .onLongPressGesture{
-                        Text(court.name)
+                        .frame(width: 70, height: 70)
+                        .clipShape(Circle())
+                        .frame(width: 35, height: 35)
+                        .contextMenu{
+                            Button(action: {
+                                let url = URL(string: "maps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)")
+                                if UIApplication.shared.canOpenURL(url!){
+                                    UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+                                }
+                            }) {
+                                Text(court.name)
+                                Image(systemName: "car.fill")
+                            }
+                        }
                     }
                 }
             }
             .onAppear{
+                
                 if count==0{
                     viewModel.checkIfLocationServicesIsEnabled()
+                    print(viewModel.region.center)
                     count+=1
                 }
-                appeared.toggle()
             }
+            
 
             LocationButton(.currentLocation) {
                 viewModel.checkIfLocationServicesIsEnabled()
