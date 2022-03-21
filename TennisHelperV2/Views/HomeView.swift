@@ -30,11 +30,9 @@ struct HomeView: View {
                     .font(.title)
                     .fontWeight(.heavy)
                 icon(weather.weather[0].main)
-                Text("near you")
-                
                 Spacer()
             } else {
-                Text("Fetching weather data")
+                Image("LoadingIcon")
                     .task {
                         do{
                             weather = try await weatherService.getCurrentWeather(latitude: locationManager.getUserCoordinates().latitude,
