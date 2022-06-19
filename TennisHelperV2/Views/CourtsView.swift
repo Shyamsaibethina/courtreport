@@ -9,14 +9,15 @@ import SwiftUI
 import MapKit
 
 struct CourtsView: View {
-    
-    @ObservedObject var locationManager = LocationManager()
-    
+        
     var body: some View {
         NavigationView {
             MapView()
             .navigationTitle("Courts Near You")
         }
+//        MapView()
+//            .ignoresSafeArea()
+            
 
     }
 }

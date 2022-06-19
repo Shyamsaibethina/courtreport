@@ -54,34 +54,34 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
         span:
             MapDetails.defaultSpan)
 
-    var locationManagar: CLLocationManager?
+    var locationManager: CLLocationManager?
 
     func checkIfLocationServicesIsEnabled() {
         if CLLocationManager.locationServicesEnabled() {
-            locationManagar = CLLocationManager()
-            locationManagar?.desiredAccuracy = kCLLocationAccuracyBest
-            locationManagar?.startUpdatingHeading()
-            locationManagar?.startUpdatingLocation()
-            locationManagar?.delegate = self
+            locationManager = CLLocationManager()
+            locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager?.startUpdatingHeading()
+            locationManager?.startUpdatingLocation()
+            locationManager?.delegate = self
 
         }
     }
 
 
      private func checkLocationAuthorization() {
-        guard let locationManagar = locationManagar else { return }
+        guard let locationManager = locationManager else { return }
 
-        switch locationManagar.authorizationStatus {
+        switch locationManager.authorizationStatus {
 
             case .notDetermined:
-                locationManagar.requestWhenInUseAuthorization()
+                locationManager.requestWhenInUseAuthorization()
             case .restricted:
                 print("Your location is restricted")
             case .denied:
                 print("You've denied location permission")
             case .authorizedAlways, .authorizedWhenInUse:
                 withAnimation{
-                    self.region = MKCoordinateRegion(center: locationManagar.location!.coordinate,
+                    self.region = MKCoordinateRegion(center: locationManager.location!.coordinate,
                                             span: MapDetails.defaultSpan)
                     print("set the region correctly")
                 }

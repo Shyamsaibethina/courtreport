@@ -53,27 +53,33 @@ struct MapView: View {
                 
                 if count==0{
                     viewModel.checkIfLocationServicesIsEnabled()
-                    print(viewModel.region.center)
                     count+=1
                 }
             }
             
+    
+            
+            VStack(alignment: .trailing){
+                LocationButton(.currentLocation) {
+                    viewModel.checkIfLocationServicesIsEnabled()
+                }
+                .foregroundColor(.white)
+                .cornerRadius(8)
+                .labelStyle(.iconOnly)
+                .symbolVariant(.fill)
+                .tint(.blue)
+                .padding(10)
 
-            LocationButton(.currentLocation) {
-                viewModel.checkIfLocationServicesIsEnabled()
+                Spacer()
+
+
+
+                Rectangle()
+                    .foregroundColor(.black)
+                    .frame(height: 100)
+                    .overlay(searchBar)
             }
-            .foregroundColor(.white)
-            .cornerRadius(8)
-            .labelStyle(.iconOnly)
-            .symbolVariant(.fill)
-            .padding(10)
         }
-    }
-}
-
-struct MapView_Previews: PreviewProvider {
-    static var previews: some View {
-        MapView()
     }
 }
 

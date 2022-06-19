@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C0839A589A87281FEDA2C3EC /* Pods_TennisHelperV2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70EFE2B4610D533A4BBDFF5C /* Pods_TennisHelperV2.framework */; };
-		E205F3BA27A1BA83006263F2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E205F3B827A1BA83006263F2 /* HomeView.swift */; };
+		E205F3BA27A1BA83006263F2 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E205F3B827A1BA83006263F2 /* LogView.swift */; };
 		E205F3BC27A33826006263F2 /* CourtsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E205F3BB27A33826006263F2 /* CourtsView.swift */; };
 		E205F3BE27A3402A006263F2 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E205F3BD27A3402A006263F2 /* LocationManager.swift */; };
 		E230CDE627E538B000C32E9D /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E230CDE527E538B000C32E9D /* WeatherService.swift */; };
@@ -19,6 +19,8 @@
 		E2CF6A6527A1B72E0085F3EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CF6A6427A1B72E0085F3EF /* ContentView.swift */; };
 		E2CF6A6727A1B72F0085F3EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2CF6A6627A1B72F0085F3EF /* Assets.xcassets */; };
 		E2CF6A6A27A1B72F0085F3EF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2CF6A6927A1B72F0085F3EF /* Preview Assets.xcassets */; };
+		E2D4A3A7284570390043D85D /* ReverseGeoLoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4A3A6284570390043D85D /* ReverseGeoLoc.swift */; };
+		E2DC43472828A2070014C2B8 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DC43462828A2070014C2B8 /* SearchBar.swift */; };
 		E2E9911627C2E68800B075FE /* CourtInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E9911527C2E68800B075FE /* CourtInfo.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,7 +28,7 @@
 		70EFE2B4610D533A4BBDFF5C /* Pods_TennisHelperV2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TennisHelperV2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		928F494B2F030705C97A3E58 /* Pods-TennisHelperV2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TennisHelperV2.release.xcconfig"; path = "Target Support Files/Pods-TennisHelperV2/Pods-TennisHelperV2.release.xcconfig"; sourceTree = "<group>"; };
 		A01AE116BAB396CD8B331337 /* Pods-TennisHelperV2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TennisHelperV2.debug.xcconfig"; path = "Target Support Files/Pods-TennisHelperV2/Pods-TennisHelperV2.debug.xcconfig"; sourceTree = "<group>"; };
-		E205F3B827A1BA83006263F2 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		E205F3B827A1BA83006263F2 /* LogView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
 		E205F3BB27A33826006263F2 /* CourtsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourtsView.swift; sourceTree = "<group>"; };
 		E205F3BD27A3402A006263F2 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E230CDE527E538B000C32E9D /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
@@ -38,7 +40,10 @@
 		E2CF6A6427A1B72E0085F3EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E2CF6A6627A1B72F0085F3EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2CF6A6927A1B72F0085F3EF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E2D4A3A6284570390043D85D /* ReverseGeoLoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseGeoLoc.swift; sourceTree = "<group>"; };
+		E2DC43462828A2070014C2B8 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		E2E9911527C2E68800B075FE /* CourtInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourtInfo.swift; sourceTree = "<group>"; };
+		E2EDED7A27E7FE93009F977C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,8 +80,9 @@
 			children = (
 				E205F3BB27A33826006263F2 /* CourtsView.swift */,
 				E2CF6A6427A1B72E0085F3EF /* ContentView.swift */,
-				E205F3B827A1BA83006263F2 /* HomeView.swift */,
+				E205F3B827A1BA83006263F2 /* LogView.swift */,
 				E29454DE27AAD52600AB6162 /* MapView.swift */,
+				E2DC43462828A2070014C2B8 /* SearchBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -86,6 +92,7 @@
 			children = (
 				E2E9911527C2E68800B075FE /* CourtInfo.swift */,
 				E205F3BD27A3402A006263F2 /* LocationManager.swift */,
+				E2D4A3A6284570390043D85D /* ReverseGeoLoc.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -128,6 +135,7 @@
 		E2CF6A6127A1B72E0085F3EF /* TennisHelperV2 */ = {
 			isa = PBXGroup;
 			children = (
+				E2EDED7A27E7FE93009F977C /* Info.plist */,
 				E2CF6A6227A1B72E0085F3EF /* TennisHelperV2App.swift */,
 				E230CDE727E5394F00C32E9D /* Weather */,
 				E29454E227AAE14900AB6162 /* Courts */,
@@ -268,9 +276,11 @@
 				E2E9911627C2E68800B075FE /* CourtInfo.swift in Sources */,
 				E28B645227B0B52E00634073 /* Courts.swift in Sources */,
 				E2CF6A6327A1B72E0085F3EF /* TennisHelperV2App.swift in Sources */,
-				E205F3BA27A1BA83006263F2 /* HomeView.swift in Sources */,
+				E205F3BA27A1BA83006263F2 /* LogView.swift in Sources */,
+				E2DC43472828A2070014C2B8 /* SearchBar.swift in Sources */,
 				E29454DF27AAD52600AB6162 /* MapView.swift in Sources */,
 				E205F3BE27A3402A006263F2 /* LocationManager.swift in Sources */,
+				E2D4A3A7284570390043D85D /* ReverseGeoLoc.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,10 +416,10 @@
 				DEVELOPMENT_TEAM = 8R22HSVT7Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TennisHelperV2/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your location so that it can determine the closest courts near you.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -438,10 +448,10 @@
 				DEVELOPMENT_TEAM = 8R22HSVT7Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TennisHelperV2/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your location so that it can determine the closest courts near you.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

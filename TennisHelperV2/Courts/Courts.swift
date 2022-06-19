@@ -1,4 +1,3 @@
-import SwiftSoup
 import Foundation
 import SwiftUI
 import CoreLocation

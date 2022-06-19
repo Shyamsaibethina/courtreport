@@ -24,9 +24,19 @@ struct CourtInfo: View {
     
     @StateObject private var viewModel = MapViewModel()
     @StateObject var locationManager = LocationManager()
+    @State var weatherService = WeatherService()
+    @State var weather: ResponseBody?
+    @State var forecast: ForecastBody?
 
     
     @State var timeText = 0
+    var weatherAltered = ["Clouds":"Cloudy",
+                          "Clear":"Clear",
+                          "Thunderstorm":"Thundering",
+                          "Drizzle":"Drizzling",
+                          "Rain":"Raining",
+                          "Snow":"Snowing",
+                          "Atmosphere":"Foggy"]
     
     var body: some View {
 
@@ -197,6 +207,163 @@ struct CourtInfo: View {
                 })
             }
             .padding(.bottom)
+            
+            //WEATHER VIEW
+            VStack{
+                if let weather = weather {
+                    VStack{
+                        Text("It is currently")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        
+                            Text(weatherAltered[weather.weather[0].main] ?? "")
+                                .font(.largeTitle)
+                                .fontWeight(.heavy)
+                                .padding(.top, 5)
+                        icon(weather.weather[0].main)
+                    }
+                    .padding(.top)
+                    
+                    
+                        VStack(spacing: 40){
+                            HStack(spacing: 60){
+                                HStack(spacing: 10){
+                                    Image(systemName: "thermometer")
+                                        .font(.system(size: 40))
+                                        .foregroundColor(.teal)
+                                    VStack(spacing: 10){
+                                        Text("Min Temp")
+                                        Text("\(Int(weather.main.tempMin))°")
+                                            .font(.system(size: 30))
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.teal)
+                                        
+                                    }
+                                    .offset(x:11)
+                                }
+                                
+                                HStack(spacing: 10){
+                                    VStack(spacing: 10){
+                                        Text("Max Temp")
+                                        Text("\(Int(weather.main.tempMax))°")
+                                            .font(.system(size: 30))
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.orange)
+                                    }
+                                    Image(systemName: "thermometer")
+                                        .font(.system(size: 40))
+                                        .foregroundColor(.orange)
+                                        .rotation3DEffect(.degrees(180), axis: (x:0, y:1, z:0))
+                                        .offset(x:6)
+                                }
+                            }
+                            
+                            
+                            HStack(spacing: 50){
+                                HStack(spacing: 10){
+                                    Image(systemName: "wind")
+                                        .font(.system(size: 40))
+                                        .foregroundColor(.gray)
+                                        .offset(x: 10)
+                                    VStack(spacing: 10){
+                                        Text("Wind")
+                                        Text("\(Int(weather.wind.speed)) m/s")
+                                            .font(.system(size: 30))
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.white)
+                                        
+                                    }
+                                }
+                                
+                                HStack(spacing: 10){
+                                    VStack(spacing: 10){
+                                        Text("Humidity")
+                                        Text("\(Int(weather.main.humidity))%")
+                                            .font(.system(size: 30))
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.blue)
+                                            
+                                    }
+                                    Image(systemName: "humidity.fill")
+                                        .font(.system(size: 40))
+                                        .foregroundColor(.blue)
+                                }
+                            }
+                        }
+                        .padding(.top, 20)
+
+                    Spacer()
+                } else {
+                    Text("Fetching weather data")
+                        .task {
+                            do{
+                                weather = try await weatherService.getCurrentWeather(latitude: court.coordinate.latitude, longitude: court.coordinate.longitude)
+                            }
+                            catch {
+                                print("Error getting weather: \(error)")
+                            }
+                        }
+                }
+            }
+            
+            VStack{
+                if let forecast = forecast {
+                    VStack(spacing:20){
+                        Text("Forecasted weather in the next hour")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        
+                        VStack{
+                            Text("It will be")
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                            
+                            Text(weatherAltered[forecast.hourly[0].weather[0].main] ?? "")
+                                    .font(.largeTitle)
+                                    .fontWeight(.heavy)
+                                    .padding(.top, 5)
+                            icon(forecast.hourly[0].weather[0].main)
+                        }
+                        .padding(.top)
+                        
+                        HStack(spacing:50){
+                            VStack{
+                                Image(systemName: "cloud.rain.fill")
+                                    .font(.system(size: 50))
+                                    .symbolRenderingMode(.palette)
+                                    .foregroundStyle(.gray, .blue)
+                                    
+                                
+                                Text("\(Int(forecast.hourly[0].pop))%")
+                            }
+                            
+                            VStack{
+                                Image(systemName: "wind")
+                                    .font(.system(size: 50))
+                                    .symbolRenderingMode(.palette)
+                                    .foregroundStyle(.gray)
+                                
+                                Text("\(Int(forecast.hourly[0].wind_speed))m/s")
+                            }
+
+                        }
+                        
+                    }
+                    .padding(.top)
+                    Spacer()
+                } else {
+                    Text("")
+                        .task {
+                            do{
+                                forecast = try await weatherService.getForecastWeather(latitude: court.coordinate.latitude, longitude: court.coordinate.longitude)
+                            }
+                            catch {
+                                print("Error getting forecast: \(error)")
+                            }
+                        }
+                }
+            }
+            .padding(.top)
         }
     }
     
@@ -219,9 +386,56 @@ struct CourtInfo: View {
             completion(Int(route.expectedTravelTime))
         }
     }
+    
+    @ViewBuilder
+    func icon(_ weatherMain: String) -> some View {
+        switch weatherMain{
+        case "Clouds":
+            Image(systemName: "cloud.fill")
+                .font(.system(size: 70))
+                .foregroundColor(.gray)
+            
+        case "Clear":
+            Image(systemName: "sun.max.fill")
+                .font(.system(size: 70))
+                .foregroundColor(.yellow)
+            
+        case "Thunderstorm":
+            Image(systemName: "cloud.bolt.fill")
+                .font(.system(size: 70))
+                .symbolRenderingMode(.palette)
+                .foregroundStyle(.gray, .yellow)
+            
+        case "Drizzle":
+            Image(systemName: "cloud.drizzle.fill")
+                .font(.system(size: 70))
+                .symbolRenderingMode(.palette)
+                .foregroundStyle(.gray, .blue)
+            
+        case "Rain":
+            Image(systemName: "cloud.rain.fill")
+                .font(.system(size: 70))
+                .symbolRenderingMode(.palette)
+                .foregroundStyle(.gray, .blue)
+                
+            
+        case "Snow":
+            Image(systemName: "cloud.snow.fill")
+                .font(.system(size: 70))
+                .symbolRenderingMode(.palette)
+                .foregroundStyle(.gray, .white)
+            
+        case "Atmosphere":
+            Image(systemName: "cloud.fog.fill")
+                .font(.system(size: 70))
+                .symbolRenderingMode(.palette)
+                .foregroundStyle(.gray, .gray)
+            
+        default:
+            Image(systemName: "questionmark")
+                .font(.system(size: 70))
+                .foregroundColor(.red)
+        }
+    }
 }
-
-
-
-
 

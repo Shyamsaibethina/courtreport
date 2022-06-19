@@ -9,18 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        TabView{
-            HomeView()
-                .tabItem {
-                    Image(systemName: "house.fill")
-                    Text("Home")
-                }
-            CourtsView()
-                .tabItem{
-                    Image(systemName: "location")
-                    Text("Courts")
-                }
-        }
+        CourtsView()
+//        TabView{
+//            CourtsView()
+//                .tabItem{
+//                    Image(systemName: "location")
+//                    Text("Courts")
+//                }
+//            LogView()
+//                .tabItem {
+//                    Image(systemName: "note.text")
+//                    Text("Logs")
+//                }
+//        }
         .preferredColorScheme(.dark)
     }
 }
