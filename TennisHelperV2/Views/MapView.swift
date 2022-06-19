@@ -17,6 +17,7 @@ struct MapView: View {
 
     var body: some View {
         let courts = loadCSV(miles: 20, viewModel: viewModel)
+        let searchBar = SearchBar()
         //ADD ANIMATION
         ZStack(alignment: .topTrailing){
             Map(coordinateRegion: .constant(viewModel.region), showsUserLocation: true, userTrackingMode: .constant(.follow), annotationItems: courts){
@@ -57,9 +58,10 @@ struct MapView: View {
                 }
             }
             
-    
+            
             
             VStack(alignment: .trailing){
+
                 LocationButton(.currentLocation) {
                     viewModel.checkIfLocationServicesIsEnabled()
                 }

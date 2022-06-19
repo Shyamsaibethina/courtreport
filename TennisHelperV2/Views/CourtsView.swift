@@ -15,10 +15,6 @@ struct CourtsView: View {
             MapView()
             .navigationTitle("Courts Near You")
         }
-//        MapView()
-//            .ignoresSafeArea()
-            
-
     }
 }
 

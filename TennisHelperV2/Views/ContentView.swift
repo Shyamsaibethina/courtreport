@@ -9,7 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        CourtsView()
+        NavigationView {
+            MapView()
+                .navigationTitle("Courts Near You")
+        }
+        //CourtsView()
 //        TabView{
 //            CourtsView()
 //                .tabItem{
@@ -29,5 +33,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .previewDevice(PreviewDevice(rawValue: "iPhone 13 Pro"))
     }
 }
