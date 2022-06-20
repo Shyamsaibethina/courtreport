@@ -41,7 +41,6 @@
 		E2CF6A6927A1B72F0085F3EF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E2DC43462828A2070014C2B8 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		E2E9911527C2E68800B075FE /* CourtInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourtInfo.swift; sourceTree = "<group>"; };
-		E2EDED7A27E7FE93009F977C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +131,6 @@
 		E2CF6A6127A1B72E0085F3EF /* TennisHelperV2 */ = {
 			isa = PBXGroup;
 			children = (
-				E2EDED7A27E7FE93009F977C /* Info.plist */,
 				E2CF6A6227A1B72E0085F3EF /* TennisHelperV2App.swift */,
 				E230CDE727E5394F00C32E9D /* Weather */,
 				E29454E227AAE14900AB6162 /* Courts */,
