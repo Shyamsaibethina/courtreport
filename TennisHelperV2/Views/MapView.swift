@@ -5,41 +5,42 @@
 //  Created by Shyamsai Bethina on 2/2/22.
 //
 
-import SwiftUI
-import MapKit
-import Foundation
 import CoreLocationUI
+import Foundation
+import MapKit
+import SwiftUI
 
 struct MapView: View {
-
-    @StateObject private var viewModel = MapViewModel()
+    @StateObject public var viewModel = MapViewModel()
+    @State private var reverseGeo = MapAPI()
     @State private var count = 0
 
     var body: some View {
         let courts = loadCSV(miles: 20, viewModel: viewModel)
-        let searchBar = SearchBar()
-        //ADD ANIMATION
-        ZStack(alignment: .topTrailing){
-            Map(coordinateRegion: .constant(viewModel.region), showsUserLocation: true, userTrackingMode: .constant(.follow), annotationItems: courts){
+        let searchBar = SearchBar(viewModel: viewModel)
+
+        // ADD ANIMATION
+        ZStack(alignment: .topTrailing) {
+            Map(coordinateRegion: .constant(viewModel.region), showsUserLocation: true, userTrackingMode: .constant(.follow), annotationItems: courts) {
                 court in
                 MapAnnotation(coordinate: court.coordinate.locationCoordinate()) {
-                    NavigationLink(destination: CourtInfo(court: court)){
-                        ZStack{
+                    NavigationLink(destination: CourtInfo(court: court)) {
+                        ZStack {
                             Circle()
                                 .foregroundColor(.white)
                                 .frame(width: 35, height: 35)
-                                            
+
                             Image("Court icon")
                                 .resizable()
-                                .offset(y:3)
+                                .offset(y: 3)
                         }
                         .frame(width: 70, height: 70)
                         .clipShape(Circle())
                         .frame(width: 35, height: 35)
-                        .contextMenu{
+                        .contextMenu {
                             Button(action: {
                                 let url = URL(string: "maps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)")
-                                if UIApplication.shared.canOpenURL(url!){
+                                if UIApplication.shared.canOpenURL(url!) {
                                     UIApplication.shared.open(url!, options: [:], completionHandler: nil)
                                 }
                             }) {
@@ -50,18 +51,14 @@ struct MapView: View {
                     }
                 }
             }
-            .onAppear{
-                
-                if count==0{
+            .onAppear {
+                if count == 0 {
                     viewModel.checkIfLocationServicesIsEnabled()
-                    count+=1
+                    count += 1
                 }
             }
-            
-            
-            
-            VStack(alignment: .trailing){
 
+            VStack(alignment: .trailing) {
                 LocationButton(.currentLocation) {
                     viewModel.checkIfLocationServicesIsEnabled()
                 }
@@ -74,8 +71,6 @@ struct MapView: View {
 
                 Spacer()
 
-
-
                 Rectangle()
                     .foregroundColor(.black)
                     .frame(height: 100)
@@ -84,6 +79,3 @@ struct MapView: View {
         }
     }
 }
-
-
-

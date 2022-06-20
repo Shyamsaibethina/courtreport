@@ -1,6 +1,6 @@
+import CoreLocation
 import Foundation
 import SwiftUI
-import CoreLocation
 
 struct Court: Codable, Identifiable {
     let id = UUID()
@@ -34,22 +34,22 @@ struct Coordinate: Codable {
     let longitude: Double
 
     func locationCoordinate() -> CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: self.latitude,
-                                      longitude: self.longitude)
+        return CLLocationCoordinate2D(latitude: latitude,
+                                      longitude: longitude)
     }
 }
 
 func loadCSV(miles: Double, viewModel: MapViewModel) -> [Court] {
     var csvToStruct = [Court]()
-    
+
     let user = CLLocation(latitude: viewModel.region.center.latitude, longitude: viewModel.region.center.longitude)
 
-    //locat the csv file
+    // locat the csv file
     guard let filePath = Bundle.main.path(forResource: "Courts", ofType: "csv") else {
         return []
     }
 
-    //convert the contents of the file into one very long string
+    // convert the contents of the file into one very long string
     var data = ""
     do {
         data = try String(contentsOfFile: filePath)
@@ -58,26 +58,24 @@ func loadCSV(miles: Double, viewModel: MapViewModel) -> [Court] {
         return []
     }
 
-    //split the long string into an array of "rows of data. Each row is a string
-    //detect "/n" carriage return, then split
+    // split the long string into an array of "rows of data. Each row is a string
+    // detect "/n" carriage return, then split
     var rows = data.components(separatedBy: "\n")
 
-    //remove header rows
+    // remove header rows
     rows.removeFirst()
 
-    
-    
-    //now loop around each row and split into columns
-    for row in rows[..<(rows.count-1)] {
+    // now loop around each row and split into columns
+    for row in rows[..<(rows.count - 1)] {
         let csvColumns = row.components(separatedBy: ",")
-        var teamStruct = Court.init(raw:csvColumns)
+        var teamStruct = Court(raw: csvColumns)
         teamStruct.name = teamStruct.name.replacingOccurrences(of: "\"", with: "")
-        
+
         let courtLocation = CLLocation(latitude: teamStruct.coordinate.latitude, longitude: teamStruct.coordinate.longitude)
-        
+
         let distance = user.distance(from: courtLocation)
-        
-        if distance <= (miles*1609.34){
+
+        if distance <= (miles * 1609.34) {
             csvToStruct.append(teamStruct)
         }
     }

@@ -8,36 +8,35 @@
 import MapKit
 import SwiftUI
 
-enum MapDetails{
+enum MapDetails {
     static let startingLocation = CLLocationCoordinate2D(latitude: 37.331516, longitude: -121.891054)
     static let defaultSpan = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
 }
 
 class LocationManager: NSObject, ObservableObject {
-    
     private let locationManager = CLLocationManager()
     @Published var location: CLLocation? = nil
-    
+
     override init() {
         super.init()
-        self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.distanceFilter = kCLDistanceFilterNone
-        self.locationManager.requestWhenInUseAuthorization()
-        self.locationManager.startUpdatingLocation()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
     }
-    
-    func getUserCoordinates() -> CLLocationCoordinate2D{
+
+    func getUserCoordinates() -> CLLocationCoordinate2D {
         locationManager.location!.coordinate
     }
 }
 
 extension LocationManager: CLLocationManagerDelegate {
-    func locationManager(  manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    func locationManager(manager _: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         print(status)
     }
 
-    func locationManager(  manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(manager _: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else {
             return
         }
@@ -46,13 +45,12 @@ extension LocationManager: CLLocationManagerDelegate {
     }
 }
 
-
 final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
-
     @Published var region = MKCoordinateRegion(
         center: MapDetails.startingLocation,
         span:
-            MapDetails.defaultSpan)
+        MapDetails.defaultSpan
+    )
 
     var locationManager: CLLocationManager?
 
@@ -63,36 +61,38 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
             locationManager?.startUpdatingHeading()
             locationManager?.startUpdatingLocation()
             locationManager?.delegate = self
-
         }
     }
 
-
-     private func checkLocationAuthorization() {
+    private func checkLocationAuthorization() {
         guard let locationManager = locationManager else { return }
 
         switch locationManager.authorizationStatus {
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted:
+            print("Your location is restricted")
+        case .denied:
+            print("You've denied location permission")
+        case .authorizedAlways, .authorizedWhenInUse:
+            withAnimation {
+                self.region = MKCoordinateRegion(center: locationManager.location!.coordinate,
+                                                 span: MapDetails.defaultSpan)
+                print("set the region correctly")
+            }
 
-            case .notDetermined:
-                locationManager.requestWhenInUseAuthorization()
-            case .restricted:
-                print("Your location is restricted")
-            case .denied:
-                print("You've denied location permission")
-            case .authorizedAlways, .authorizedWhenInUse:
-                withAnimation{
-                    self.region = MKCoordinateRegion(center: locationManager.location!.coordinate,
-                                            span: MapDetails.defaultSpan)
-                    print("set the region correctly")
-                }
-                
-                
-            @unknown default:
-                break
+        @unknown default:
+            break
         }
     }
 
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+    func changeLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+        withAnimation {
+            self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: MapDetails.defaultSpan)
+        }
+    }
+
+    func locationManagerDidChangeAuthorization(_: CLLocationManager) {
         checkLocationAuthorization()
     }
 }

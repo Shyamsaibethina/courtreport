@@ -21,6 +21,7 @@
 		E2CF6A6A27A1B72F0085F3EF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2CF6A6927A1B72F0085F3EF /* Preview Assets.xcassets */; };
 		E2DC43472828A2070014C2B8 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DC43462828A2070014C2B8 /* SearchBar.swift */; };
 		E2E9911627C2E68800B075FE /* CourtInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E9911527C2E68800B075FE /* CourtInfo.swift */; };
+		E2F42A7B2860D54900B6C458 /* ReverseGeoLoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F42A7A2860D54900B6C458 /* ReverseGeoLoc.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,8 @@
 		E2CF6A6927A1B72F0085F3EF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E2DC43462828A2070014C2B8 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		E2E9911527C2E68800B075FE /* CourtInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourtInfo.swift; sourceTree = "<group>"; };
+		E2F42A7A2860D54900B6C458 /* ReverseGeoLoc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReverseGeoLoc.swift; sourceTree = "<group>"; };
+		E2F42A7C2860E6BF00B6C458 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +90,7 @@
 		E205F3C027A43405006263F2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E2F42A7A2860D54900B6C458 /* ReverseGeoLoc.swift */,
 				E2E9911527C2E68800B075FE /* CourtInfo.swift */,
 				E205F3BD27A3402A006263F2 /* LocationManager.swift */,
 			);
@@ -131,6 +135,7 @@
 		E2CF6A6127A1B72E0085F3EF /* TennisHelperV2 */ = {
 			isa = PBXGroup;
 			children = (
+				E2F42A7C2860E6BF00B6C458 /* Info.plist */,
 				E2CF6A6227A1B72E0085F3EF /* TennisHelperV2App.swift */,
 				E230CDE727E5394F00C32E9D /* Weather */,
 				E29454E227AAE14900AB6162 /* Courts */,
@@ -275,6 +280,7 @@
 				E2DC43472828A2070014C2B8 /* SearchBar.swift in Sources */,
 				E29454DF27AAD52600AB6162 /* MapView.swift in Sources */,
 				E205F3BE27A3402A006263F2 /* LocationManager.swift in Sources */,
+				E2F42A7B2860D54900B6C458 /* ReverseGeoLoc.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,10 +416,12 @@
 				DEVELOPMENT_TEAM = 8R22HSVT7Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TennisHelperV2/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your location so that it can determine the closest courts near you.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-                INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -442,10 +450,12 @@
 				DEVELOPMENT_TEAM = 8R22HSVT7Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TennisHelperV2/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your location so that it can determine the closest courts near you.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-                INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

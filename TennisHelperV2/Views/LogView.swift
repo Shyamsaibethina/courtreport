@@ -5,12 +5,9 @@
 //  Created by Shyamsai Bethina on 1/26/22.
 //
 
-import SwiftUI 
+import SwiftUI
 
 struct LogView: View {
-    
-    
-    
     var body: some View {
         Text("Add Match logs here")
     }
