@@ -57,6 +57,7 @@ struct MapView: View {
                     count += 1
                 }
             }
+            .ignoresSafeArea(.keyboard)
 
             VStack(alignment: .trailing) {
                 LocationButton(.currentLocation) {

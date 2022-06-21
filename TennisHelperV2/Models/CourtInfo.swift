@@ -346,6 +346,7 @@ struct CourtInfo: View {
             }
             .padding(.top)
         }
+        .padding(.bottom, 10)
     }
 
     func getWaitTime(_ court: Court, completion: @escaping (Int?) -> Void) {
