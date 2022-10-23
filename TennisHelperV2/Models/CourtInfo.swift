@@ -27,6 +27,8 @@ struct CourtInfo: View {
     @State var weatherService = WeatherService()
     @State var weather: ResponseBody?
     @State var forecast: ForecastBody?
+    var googleMaps = false;
+    @State private var showMapDialog = false;
 
     @State var timeText = 0
     var weatherAltered = ["Clouds": "Cloudy",
@@ -49,6 +51,33 @@ struct CourtInfo: View {
                     .clipShape(RoundedRectangle(cornerRadius: 25))
                     .offset(y: offsetForMap)
                     .padding()
+                    .confirmationDialog("Pick a map", isPresented: $showMapDialog) {
+                        Button("Google Maps") {
+                            let googleURL = URL(string: "comgooglemaps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)&directionsmode=driving")
+                            if UIApplication.shared.canOpenURL(googleURL!) {
+                                UIApplication.shared.open(googleURL!, options: [:], completionHandler: nil)
+                            } else {
+                                print("Can't use comgooglemaps://")
+                            }
+                        }
+                        Button("Apple Maps") {
+                            let url = URL(string: "maps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)")
+                            if UIApplication.shared.canOpenURL(url!) {
+                                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+                            }
+                        }
+                    }
+                    .onTapGesture {
+                        let googleURL = URL(string: "comgooglemaps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)&directionsmode=driving")
+                        if UIApplication.shared.canOpenURL(googleURL!) {
+                            self.showMapDialog = true
+                        } else {
+                            let url = URL(string: "maps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)")
+                            if UIApplication.shared.canOpenURL(url!) {
+                                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+                            }
+                        }
+                    }
 
                 Text(court.name)
                     .font(.largeTitle)
@@ -83,10 +112,31 @@ struct CourtInfo: View {
                     .overlay(RoundedRectangle(cornerRadius: 25)
                         .stroke(.blue, lineWidth: 5)
                         .frame(width: 160, height: 160))
+                    .confirmationDialog("Pick a map", isPresented: $showMapDialog) {
+                        Button("Google Maps") {
+                            let googleURL = URL(string: "comgooglemaps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)&directionsmode=driving")
+                            if UIApplication.shared.canOpenURL(googleURL!) {
+                                UIApplication.shared.open(googleURL!, options: [:], completionHandler: nil)
+                            } else {
+                                print("Can't use comgooglemaps://")
+                            }
+                        }
+                        Button("Apple Maps") {
+                            let url = URL(string: "maps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)")
+                            if UIApplication.shared.canOpenURL(url!) {
+                                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+                            }
+                        }
+                    }
                     .onTapGesture {
-                        let url = URL(string: "maps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)")
-                        if UIApplication.shared.canOpenURL(url!) {
-                            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+                        let googleURL = URL(string: "comgooglemaps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)&directionsmode=driving")
+                        if UIApplication.shared.canOpenURL(googleURL!) {
+                            self.showMapDialog = true
+                        } else {
+                            let url = URL(string: "maps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)")
+                            if UIApplication.shared.canOpenURL(url!) {
+                                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+                            }
                         }
                     }
 

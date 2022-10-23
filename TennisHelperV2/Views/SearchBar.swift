@@ -12,7 +12,7 @@ struct SearchBar: View {
     @State var search = ""
     @State var isSearching = false
     @StateObject var reverseGeo = MapAPI()
-    var viewModel: MapViewModel
+    //var viewModel: MapViewModel
     var body: some View {
         HStack {
             RoundedRectangle(cornerRadius: 15, style: .continuous)

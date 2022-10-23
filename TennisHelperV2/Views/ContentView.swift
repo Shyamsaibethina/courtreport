@@ -9,23 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        NavigationView {
-            MapView()
-                .navigationTitle("Courts Near You")
+        TabView{
+            CourtsView()
+                .tabItem {
+                    Image(systemName: "location")
+                    Text("Courts")
+                }
+            SearchView()
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+                    Text("Search")
+                }
         }
-        // CourtsView()
-//        TabView{
-//            CourtsView()
-//                .tabItem{
-//                    Image(systemName: "location")
-//                    Text("Courts")
-//                }
-//            LogView()
-//                .tabItem {
-//                    Image(systemName: "note.text")
-//                    Text("Logs")
-//                }
-//        }
         .preferredColorScheme(.dark)
     }
 }
