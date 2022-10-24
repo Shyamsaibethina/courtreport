@@ -101,13 +101,23 @@ struct CourtInfo: View {
                             .background(.white)
                             .clipShape(RoundedRectangle(cornerRadius: 25))
                             .offset(y: offsetForDivider)
-
-                        Text("\(timeText / 60)")
-                            .italic()
-                            .font(.system(size: 50, weight: .bold, design: .rounded))
-                            .offset(y: offsetForTime)
-                        Text((timeText / 60 == 1) ? "minute" : "minutes")
-                            .offset(y: offsetForTime)
+                        
+                        if (timeText / 60 > 59) {
+                            Text("\(timeText / 60 / 60)")
+                                .italic()
+                                .font(.system(size: 50, weight: .bold, design: .rounded))
+                                .offset(y: offsetForTime)
+                            Text((timeText / 60 / 60 == 1) ? "hour" : "hours")
+                                .offset(y: offsetForTime)
+                        } else {
+                            Text("\(timeText / 60)")
+                                .italic()
+                                .font(.system(size: 50, weight: .bold, design: .rounded))
+                                .offset(y: offsetForTime)
+                            Text((timeText / 60 == 1) ? "minute" : "minutes")
+                                .offset(y: offsetForTime)
+                        }
+                        
                     }
                     .overlay(RoundedRectangle(cornerRadius: 25)
                         .stroke(.blue, lineWidth: 5)

@@ -17,7 +17,6 @@ struct MapView: View {
 
     var body: some View {
         let courts = loadCSV(miles: 20, viewModel: viewModel)
-        let searchBar = SearchBar()
 
         // ADD ANIMATION
         ZStack(alignment: .topTrailing) {
@@ -71,11 +70,6 @@ struct MapView: View {
                 .padding(10)
 
                 Spacer()
-
-//                Rectangle()
-//                    .foregroundColor(.black)
-//                    .frame(height: 100)
-//                    .overlay(searchBar)
             }
         }
     }

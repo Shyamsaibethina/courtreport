@@ -11,7 +11,15 @@ struct SearchList: View {
     @State var searchQuery = ""
     @State var courts = loadFullCSV()
     let fullCourts = loadFullCSV()
+    @State var courtModels: [CourtModel] = []
     var body: some View {
+//        List(courtModels) { court in
+//            Text(court.name)
+//                .foregroundColor(.white)
+//        }
+//        .onAppear {
+//            courtModels = DB_Manager().getUsers()
+//        }
         List(courts) { court in
             NavigationLink(destination: CourtInfo(court: court)) {
                 Text(court.name)

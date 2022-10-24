@@ -23,6 +23,8 @@
 		E2DAAB7829009C8800E5908A /* SearchList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DAAB7729009C8800E5908A /* SearchList.swift */; };
 		E2DC43472828A2070014C2B8 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DC43462828A2070014C2B8 /* SearchBar.swift */; };
 		E2E9911627C2E68800B075FE /* CourtInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E9911527C2E68800B075FE /* CourtInfo.swift */; };
+		E2F2CB3929071DA2009E1133 /* CourtModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CB3829071DA2009E1133 /* CourtModel.swift */; };
+		E2F2CB3B29071E22009E1133 /* DB_Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F2CB3A29071E22009E1133 /* DB_Manager.swift */; };
 		E2F42A7B2860D54900B6C458 /* ReverseGeoLoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F42A7A2860D54900B6C458 /* ReverseGeoLoc.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +48,10 @@
 		E2DAAB7729009C8800E5908A /* SearchList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchList.swift; sourceTree = "<group>"; };
 		E2DC43462828A2070014C2B8 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		E2E9911527C2E68800B075FE /* CourtInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourtInfo.swift; sourceTree = "<group>"; };
+		E2F2CB3729071D35009E1133 /* Courts.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Courts.sqlite; sourceTree = "<group>"; };
+		E2F2CB3829071DA2009E1133 /* CourtModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourtModel.swift; sourceTree = "<group>"; };
+		E2F2CB3A29071E22009E1133 /* DB_Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB_Manager.swift; sourceTree = "<group>"; };
+		E2F2CB3C29072AE8009E1133 /* Courts.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Courts.sqlite3; sourceTree = "<group>"; };
 		E2F42A7A2860D54900B6C458 /* ReverseGeoLoc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReverseGeoLoc.swift; sourceTree = "<group>"; };
 		E2F42A7C2860E6BF00B6C458 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -114,8 +120,12 @@
 		E29454E227AAE14900AB6162 /* Courts */ = {
 			isa = PBXGroup;
 			children = (
+				E2F2CB3729071D35009E1133 /* Courts.sqlite */,
+				E2F2CB3C29072AE8009E1133 /* Courts.sqlite3 */,
 				E26A517C27BAA1B200A7BB68 /* Courts.csv */,
 				E28B645127B0B52E00634073 /* Courts.swift */,
+				E2F2CB3829071DA2009E1133 /* CourtModel.swift */,
+				E2F2CB3A29071E22009E1133 /* DB_Manager.swift */,
 			);
 			path = Courts;
 			sourceTree = "<group>";
@@ -282,6 +292,7 @@
 				E2E9911627C2E68800B075FE /* CourtInfo.swift in Sources */,
 				E2DAAB762900972300E5908A /* SearchView.swift in Sources */,
 				E28B645227B0B52E00634073 /* Courts.swift in Sources */,
+				E2F2CB3B29071E22009E1133 /* DB_Manager.swift in Sources */,
 				E2CF6A6327A1B72E0085F3EF /* TennisHelperV2App.swift in Sources */,
 				E205F3BA27A1BA83006263F2 /* LogView.swift in Sources */,
 				E2DAAB7829009C8800E5908A /* SearchList.swift in Sources */,
@@ -289,6 +300,7 @@
 				E29454DF27AAD52600AB6162 /* MapView.swift in Sources */,
 				E205F3BE27A3402A006263F2 /* LocationManager.swift in Sources */,
 				E2F42A7B2860D54900B6C458 /* ReverseGeoLoc.swift in Sources */,
+				E2F2CB3929071DA2009E1133 /* CourtModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@ target 'TennisHelperV2' do
 
   pod "KRTournamentView"
   pod "SwiftSoup"
+  pod 'SQLite.swift', '~> 0.13.3' 
 
 
 end

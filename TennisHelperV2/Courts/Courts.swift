@@ -44,7 +44,7 @@ func loadCSV(miles: Double, viewModel: MapViewModel) -> [Court] {
 
     let user = CLLocation(latitude: viewModel.region.center.latitude, longitude: viewModel.region.center.longitude)
 
-    // locat the csv file
+    // locate the csv file
     guard let filePath = Bundle.main.path(forResource: "Courts", ofType: "csv") else {
         return []
     }
