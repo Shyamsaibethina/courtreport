@@ -1,10 +1,3 @@
-//
-//  SwiftUIView.swift
-//  TennisHelperV2
-//
-//  Created by Shyamsai Bethina on 2/20/22.
-//
-
 import MapKit
 import SwiftUI
 
@@ -27,8 +20,8 @@ struct CourtInfo: View {
     @State var weatherService = WeatherService()
     @State var weather: ResponseBody?
     @State var forecast: ForecastBody?
-    var googleMaps = false;
-    @State private var showMapDialog = false;
+    var googleMaps = false
+    @State private var showMapDialog = false
 
     @State var timeText = 0
     var weatherAltered = ["Clouds": "Cloudy",
@@ -43,41 +36,41 @@ struct CourtInfo: View {
         ScrollView(showsIndicators: true) {
             VStack {
                 Map(coordinateRegion: .constant(MKCoordinateRegion(center: court.coordinate.locationCoordinate(), span: MapDetails.defaultSpan)), showsUserLocation: true, annotationItems: [court])
-                    {
-                        court in
-                        MapMarker(coordinate: court.coordinate.locationCoordinate())
-                    }
+                {
+                    court in
+                    MapMarker(coordinate: court.coordinate.locationCoordinate())
+                }
                     .frame(width: ScreenBounds.width * 0.95, height: 175 * scale, alignment: .top)
                     .clipShape(RoundedRectangle(cornerRadius: 25))
                     .offset(y: offsetForMap)
                     .padding()
                     .confirmationDialog("Pick a map", isPresented: $showMapDialog) {
-                        Button("Google Maps") {
-                            let googleURL = URL(string: "comgooglemaps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)&directionsmode=driving")
-                            if UIApplication.shared.canOpenURL(googleURL!) {
-                                UIApplication.shared.open(googleURL!, options: [:], completionHandler: nil)
-                            } else {
-                                print("Can't use comgooglemaps://")
-                            }
-                        }
-                        Button("Apple Maps") {
-                            let url = URL(string: "maps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)")
-                            if UIApplication.shared.canOpenURL(url!) {
-                                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
-                            }
-                        }
-                    }
-                    .onTapGesture {
+                    Button("Google Maps") {
                         let googleURL = URL(string: "comgooglemaps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)&directionsmode=driving")
                         if UIApplication.shared.canOpenURL(googleURL!) {
-                            self.showMapDialog = true
+                            UIApplication.shared.open(googleURL!, options: [:], completionHandler: nil)
                         } else {
-                            let url = URL(string: "maps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)")
-                            if UIApplication.shared.canOpenURL(url!) {
-                                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
-                            }
+                            print("Can't use comgooglemaps://")
                         }
                     }
+                    Button("Apple Maps") {
+                        let url = URL(string: "maps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)")
+                        if UIApplication.shared.canOpenURL(url!) {
+                            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+                        }
+                    }
+                }
+                    .onTapGesture {
+                    let googleURL = URL(string: "comgooglemaps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)&directionsmode=driving")
+                    if UIApplication.shared.canOpenURL(googleURL!) {
+                        self.showMapDialog = true
+                    } else {
+                        let url = URL(string: "maps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)")
+                        if UIApplication.shared.canOpenURL(url!) {
+                            UIApplication.shared.open(url!, options: [:], completionHandler: nil)
+                        }
+                    }
+                }
 
                 Text(court.name)
                     .font(.largeTitle)
@@ -93,7 +86,6 @@ struct CourtInfo: View {
                         Image(systemName: "car.fill")
                             .font(.system(size: 40.0))
                             .foregroundColor(.blue)
-                            .background(.black)
                             .offset(y: offsetForIcons)
 
                         Divider()
@@ -101,7 +93,7 @@ struct CourtInfo: View {
                             .background(.white)
                             .clipShape(RoundedRectangle(cornerRadius: 25))
                             .offset(y: offsetForDivider)
-                        
+
                         if (timeText / 60 > 59) {
                             Text("\(timeText / 60 / 60)")
                                 .italic()
@@ -117,12 +109,12 @@ struct CourtInfo: View {
                             Text((timeText / 60 == 1) ? "minute" : "minutes")
                                 .offset(y: offsetForTime)
                         }
-                        
+
                     }
-                    .overlay(RoundedRectangle(cornerRadius: 25)
+                        .overlay(RoundedRectangle(cornerRadius: 25)
                         .stroke(.blue, lineWidth: 5)
                         .frame(width: 160, height: 160))
-                    .confirmationDialog("Pick a map", isPresented: $showMapDialog) {
+                        .confirmationDialog("Pick a map", isPresented: $showMapDialog) {
                         Button("Google Maps") {
                             let googleURL = URL(string: "comgooglemaps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)&directionsmode=driving")
                             if UIApplication.shared.canOpenURL(googleURL!) {
@@ -138,7 +130,7 @@ struct CourtInfo: View {
                             }
                         }
                     }
-                    .onTapGesture {
+                        .onTapGesture {
                         let googleURL = URL(string: "comgooglemaps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)&directionsmode=driving")
                         if UIApplication.shared.canOpenURL(googleURL!) {
                             self.showMapDialog = true
@@ -171,30 +163,28 @@ struct CourtInfo: View {
                         Text("courts")
                             .offset(y: offsetForTime - 7)
                     }
-                    .overlay(RoundedRectangle(cornerRadius: 25)
+                        .overlay(RoundedRectangle(cornerRadius: 25)
                         .stroke(court.lights == "TRUE" ? .green : .red, lineWidth: 5)
                         .frame(width: 160, height: 160))
                 }
-                .offset(y: offsetForMap + 20)
+                    .offset(y: offsetForMap + 20)
 
                 // TYPE OF COURTS
                 HStack(alignment: .center, spacing: 70) {
                     HStack(spacing: 0) {
-                        VStack(alignment: .leading, spacing: 10) {
+                        VStack(alignment: .leading, spacing: 23) {
                             Text("Clay:")
                                 .foregroundColor(.white)
-                                .font(.system(size: 30, weight: .bold, design: .rounded))
+                                .font(.system(size: 20, weight: .bold, design: .rounded))
 
                             Text("Grass:")
                                 .foregroundColor(.white)
-                                .font(.system(size: 30, weight: .bold, design: .rounded))
+                                .font(.system(size: 20, weight: .bold, design: .rounded))
 
                             Text("Backboard:")
                                 .foregroundColor(.white)
                                 .font(.system(size: 20, weight: .bold, design: .rounded))
-                                .offset(y: 10)
                         }
-                        .offset(y: -8)
 
                         VStack(alignment: .trailing, spacing: 15) {
                             Image(systemName: court.clay == "TRUE" ? "checkmark.circle.fill" : "xmark.circle.fill")
@@ -210,203 +200,228 @@ struct CourtInfo: View {
                                 .font(.title)
                         }
                     }
-                    .overlay(RoundedRectangle(cornerRadius: 25)
+                        .overlay(RoundedRectangle(cornerRadius: 25)
                         .stroke(.indigo, lineWidth: 5)
                         .frame(width: 160, height: 160))
-                    .offset(x: 10)
+                        .padding(.leading)
 
                     // INDOOR and PROSHOP
                     VStack {
                         HStack {
-                            Text("Indoor:")
-                                .foregroundColor(.white)
-                                .font(.system(size: 30, weight: .bold, design: .rounded))
-                                .offset(y: -2)
+                            VStack {
+                                Image(systemName: court.proshop == "TRUE" ?
+                                "cart.badge.plus": "cart.badge.minus")
+                                    .foregroundColor(court.proshop == "TRUE" ? .green : .red)
+                                    .font(.system(size: 50))
+                                    .offset(x: -5, y: offsetForIcons - 10)
 
-                            Image(systemName: court.indoor == "TRUE" ? "checkmark.circle.fill" : "xmark.circle.fill")
-                                .foregroundColor(court.indoor == "TRUE" ? .green : .red)
-                                .font(.title)
+
+                                Divider()
+                                    .frame(width: 120, height: 5)
+                                    .background(.white)
+                                    .clipShape(RoundedRectangle(cornerRadius: 25))
+                                    .offset(y: offsetForDivider - 15)
+
+                                VStack(alignment: .center) {
+                                    Text("Proshop:")
+                                    Text(court.proshop == "TRUE" ? "Available" : "Not Available")
+                                        .font(.system(size: 22, weight: .bold, design: .rounded))
+                                        .foregroundColor(court.proshop == "TRUE" ? .green : .red)
+                                        .padding(.bottom, 1)
+                                }
+                                    .padding(.bottom)
+                            }
                         }
-
-                        Divider()
-                            .frame(width: 120, height: 5)
-                            .background(.white)
-                            .clipShape(RoundedRectangle(cornerRadius: 25))
-                            .offset(y: offsetForDivider - 20)
-
-                        VStack {
-                            Image(systemName: "cart.fill")
-                                .foregroundColor(court.proshop == "TRUE" ? .green : .red)
-                                .font(.system(size: 50))
-                                .offset(y: -8)
-
-                            Text("Proshop: ")
-                                .font(.caption) +
-                                Text(court.proshop == "TRUE" ? "Available" : "Not Available")
-                                .font(.caption)
-                        }
+                            .overlay(RoundedRectangle(cornerRadius: 25)
+                            .stroke(.orange, lineWidth: 5)
+                            .frame(width: 160, height: 160))
+                            .offset(x: -19)
                     }
-                    .overlay(RoundedRectangle(cornerRadius: 25)
-                        .stroke(.orange, lineWidth: 5)
-                        .frame(width: 160, height: 160))
-                    .offset(x: -12)
                 }
-                // Spacer()
-            }.onAppear {
-                getWaitTime(court, completion: { time in
-                    timeText = time!
-                })
-            }
-            .padding(.bottom)
 
-            // WEATHER VIEW
-            VStack {
-                if let weather = weather {
-                    VStack {
-                        Text("It is currently")
-                            .font(.title2)
-                            .fontWeight(.semibold)
+                VStack {
+                    Image(systemName: "house.lodge")
+                        .foregroundColor(court.indoor == "TRUE" ? .green:
+                        .red)
+                        .font(.system(size: 50))
+                        .offset(y: offsetForIcons - 20)
 
-                        Text(weatherAltered[weather.weather[0].main] ?? "")
-                            .font(.largeTitle)
-                            .fontWeight(.heavy)
-                            .padding(.top, 5)
-                        icon(weather.weather[0].main)
+                    Divider()
+                        .frame(width: 120, height: 5)
+                        .background(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 25))
+                        .offset(y: offsetForDivider - 20)
+
+                    VStack(alignment: .center) {
+                        Text("Indoor Courts: ")
+                        Text(court.indoor == "TRUE" ? "Available" : "Not Available")
+                            .font(.system(size: 22, weight: .bold, design: .rounded))
+                            .foregroundColor(court.indoor == "TRUE" ? .green : .red)
+                            .padding(.bottom, 1)
                     }
-                    .padding(.top)
+                }
+                    .overlay(RoundedRectangle(cornerRadius: 25)
+                    .stroke(.cyan, lineWidth: 5)
+                    .frame(width: 160, height: 160))
+                    .onAppear {
+                    getWaitTime(court, completion: { time in
+                        timeText = time!
+                    })
+                }
+                    .padding(.top, 50)
+                    .padding(.bottom)
 
-                    VStack(spacing: 40) {
-                        HStack(spacing: 60) {
-                            HStack(spacing: 10) {
-                                Image(systemName: "thermometer")
-                                    .font(.system(size: 40))
-                                    .foregroundColor(.teal)
-                                VStack(spacing: 10) {
-                                    Text("Min Temp")
-                                    Text("\(Int(weather.main.tempMin))°")
-                                        .font(.system(size: 30))
-                                        .fontWeight(.bold)
-                                        .foregroundColor(.teal)
-                                }
-                                .offset(x: 11)
-                            }
+                // WEATHER VIEW
+                VStack {
+                    if let weather = weather {
+                        VStack {
+                            Text("It is currently")
+                                .font(.title2)
+                                .fontWeight(.semibold)
 
-                            HStack(spacing: 10) {
-                                VStack(spacing: 10) {
-                                    Text("Max Temp")
-                                    Text("\(Int(weather.main.tempMax))°")
-                                        .font(.system(size: 30))
-                                        .fontWeight(.bold)
-                                        .foregroundColor(.orange)
-                                }
-                                Image(systemName: "thermometer")
-                                    .font(.system(size: 40))
-                                    .foregroundColor(.orange)
-                                    .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
-                                    .offset(x: 6)
-                            }
+                            Text(weatherAltered[weather.weather[0].main] ?? "")
+                                .font(.largeTitle)
+                                .fontWeight(.heavy)
+                            icon(weather.weather[0].main)
                         }
+                            .padding(.top)
 
-                        HStack(spacing: 50) {
-                            HStack(spacing: 10) {
-                                Image(systemName: "wind")
-                                    .font(.system(size: 40))
-                                    .foregroundColor(.gray)
-                                    .offset(x: 10)
-                                VStack(spacing: 10) {
-                                    Text("Wind")
-                                    Text("\(Int(weather.wind.speed)) m/s")
-                                        .font(.system(size: 30))
-                                        .fontWeight(.bold)
-                                        .foregroundColor(.white)
+                        VStack(spacing: 40) {
+                            HStack(spacing: 60) {
+                                HStack(spacing: 10) {
+                                    Image(systemName: "thermometer")
+                                        .font(.system(size: 40))
+                                        .foregroundColor(.teal)
+                                    VStack(spacing: 10) {
+                                        Text("Min Temp")
+                                        Text("\(Int(weather.main.tempMin))°")
+                                            .font(.system(size: 30))
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.teal)
+                                    }
+                                        .offset(x: 11)
+                                }
+
+                                HStack(spacing: 10) {
+                                    VStack(spacing: 10) {
+                                        Text("Max Temp")
+                                        Text("\(Int(weather.main.tempMax))°")
+                                            .font(.system(size: 30))
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.orange)
+                                    }
+                                    Image(systemName: "thermometer")
+                                        .font(.system(size: 40))
+                                        .foregroundColor(.orange)
+                                        .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
+                                        .offset(x: 6)
                                 }
                             }
 
-                            HStack(spacing: 10) {
-                                VStack(spacing: 10) {
-                                    Text("Humidity")
-                                    Text("\(Int(weather.main.humidity))%")
-                                        .font(.system(size: 30))
-                                        .fontWeight(.bold)
+                            HStack(spacing: 50) {
+                                HStack(spacing: 10) {
+                                    Image(systemName: "wind")
+                                        .font(.system(size: 40))
+                                        .foregroundColor(.gray)
+                                        .offset(x: 10)
+                                    VStack(spacing: 10) {
+                                        Text("Wind")
+                                        Text("\(Int(weather.wind.speed)) m/s")
+                                            .font(.system(size: 30))
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.white)
+                                    }
+                                }
+
+                                HStack(spacing: 10) {
+                                    VStack(spacing: 10) {
+                                        Text("Humidity")
+                                        Text("\(Int(weather.main.humidity))%")
+                                            .font(.system(size: 30))
+                                            .fontWeight(.bold)
+                                            .foregroundColor(.blue)
+                                    }
+                                    Image(systemName: "humidity.fill")
+                                        .font(.system(size: 40))
                                         .foregroundColor(.blue)
                                 }
-                                Image(systemName: "humidity.fill")
-                                    .font(.system(size: 40))
-                                    .foregroundColor(.blue)
                             }
                         }
-                    }
-                    .padding(.top, 20)
+                            .padding(.top, 20)
 
-                    Spacer()
-                } else {
-                    Text("Fetching weather data")
-                        .task {
+                        Spacer()
+                    } else {
+                        Text("Fetching weather data")
+                            .task {
                             do {
                                 weather = try await weatherService.getCurrentWeather(latitude: court.coordinate.latitude, longitude: court.coordinate.longitude)
                             } catch {
                                 print("Error getting weather: \(error)")
                             }
                         }
+                    }
                 }
-            }
 
-            VStack {
-                if let forecast = forecast {
-                    VStack(spacing: 20) {
-                        Text("Forecasted weather in the next hour")
-                            .font(.title2)
-                            .fontWeight(.semibold)
-
-                        VStack {
-                            Text("It will be")
+                VStack {
+                    if let forecast = forecast {
+                        VStack(spacing: 20) {
+                            Text("Forecasted weather in the next hour")
                                 .font(.title2)
                                 .fontWeight(.semibold)
 
-                            Text(weatherAltered[forecast.hourly[0].weather[0].main] ?? "")
-                                .font(.largeTitle)
-                                .fontWeight(.heavy)
-                                .padding(.top, 5)
-                            icon(forecast.hourly[0].weather[0].main)
-                        }
-                        .padding(.top)
-
-                        HStack(spacing: 50) {
                             VStack {
-                                Image(systemName: "cloud.rain.fill")
-                                    .font(.system(size: 50))
-                                    .symbolRenderingMode(.palette)
-                                    .foregroundStyle(.gray, .blue)
+                                Text("It will be")
+                                    .font(.title2)
+                                    .fontWeight(.semibold)
 
-                                Text("\(Int(forecast.hourly[0].pop))%")
+                                Text(weatherAltered[forecast.hourly[0].weather[0].main] ?? "")
+                                    .font(.largeTitle)
+                                    .fontWeight(.heavy)
+                                    .padding(.top, 5)
+                                icon(forecast.hourly[0].weather[0].main)
                             }
+                                .padding(.top)
 
-                            VStack {
-                                Image(systemName: "wind")
-                                    .font(.system(size: 50))
-                                    .symbolRenderingMode(.palette)
-                                    .foregroundStyle(.gray)
+                            HStack(spacing: 50) {
+                                VStack {
+                                    Image(systemName: "cloud.rain.fill")
+                                        .font(.system(size: 50))
+                                        .symbolRenderingMode(.palette)
+                                        .foregroundStyle(.gray, .blue)
 
-                                Text("\(Int(forecast.hourly[0].wind_speed))m/s")
+                                    Text("\(Int(forecast.hourly[0].pop))%")
+                                }
+
+                                VStack {
+                                    Image(systemName: "wind")
+                                        .font(.system(size: 50))
+                                        .symbolRenderingMode(.palette)
+                                        .foregroundStyle(.gray)
+
+                                    Text("\(Int(forecast.hourly[0].wind_speed))m/s")
+                                }
                             }
                         }
-                    }
-                    .padding(.top)
-                    Spacer()
-                } else {
-                    Text("")
-                        .task {
+                            .padding(.top)
+                        Spacer()
+                    } else {
+                        Text("")
+                            .task {
                             do {
                                 forecast = try await weatherService.getForecastWeather(latitude: court.coordinate.latitude, longitude: court.coordinate.longitude)
                             } catch {
                                 print("Error getting forecast: \(error)")
                             }
                         }
+                    }
                 }
+                    .padding(.top)
             }
-            .padding(.top)
+                .padding(.bottom, 10)
         }
-        .padding(.bottom, 10)
+            .background(
+            LinearGradient(gradient: Gradient(stops: [.init(color: .black, location: 0.8), .init(color: .gray, location: 1.0)]), startPoint: .top, endPoint: .bottom)
+        )
     }
 
     func getWaitTime(_ court: Court, completion: @escaping (Int?) -> Void) {
@@ -422,7 +437,6 @@ struct CourtInfo: View {
         let directions = MKDirections(request: request)
         directions.calculate { response, _ in
             guard let route = response?.routes.first else { return }
-            // print(Int(route.expectedTravelTime))
             completion(Int(route.expectedTravelTime))
         }
     }
@@ -477,3 +491,4 @@ struct CourtInfo: View {
         }
     }
 }
+

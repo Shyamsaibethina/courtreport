@@ -1,10 +1,3 @@
-//
-//  ReverseGeoLoc.swift
-//  TennisHelperV2
-//
-//  Created by Shyamsai Bethina on 5/30/22.
-//
-
 import Foundation
 import MapKit
 
@@ -23,7 +16,7 @@ class MapAPI: ObservableObject {
 
     @Published var coordinates = []
 
-    init() {}
+    init() { }
 
     func getLocation(address: String) {
         let pAddress = address.replacingOccurrences(of: " ", with: "%20")
@@ -53,10 +46,8 @@ class MapAPI: ObservableObject {
                 let lon = details.longitude
 
                 self.coordinates = [lat, lon]
-
-                // print(self.coordinates)
             }
         }
-        .resume()
+            .resume()
     }
 }

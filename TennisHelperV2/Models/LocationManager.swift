@@ -1,10 +1,3 @@
-//
-//  MapViewModel.swift
-//  TennisHelperV2
-//
-//  Created by Shyamsai Bethina on 1/27/22.
-//
-
 import MapKit
 import SwiftUI
 
@@ -49,7 +42,7 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
     @Published var region = MKCoordinateRegion(
         center: MapDetails.startingLocation,
         span:
-        MapDetails.defaultSpan
+            MapDetails.defaultSpan
     )
 
     var locationManager: CLLocationManager?
@@ -78,7 +71,6 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
             withAnimation {
                 self.region = MKCoordinateRegion(center: locationManager.location!.coordinate,
                                                  span: MapDetails.defaultSpan)
-                print("set the region correctly")
             }
 
         @unknown default:
@@ -89,6 +81,7 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
     func changeLocation(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         withAnimation {
             self.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: MapDetails.defaultSpan)
+
         }
     }
 
