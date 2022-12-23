@@ -1,46 +1,40 @@
-//
-//  SearchList.swift
-//  TennisHelperV2
-//
-//  Created by Shyamsai Bethina on 10/19/22.
-//
-
 import SwiftUI
+import CoreLocationUI
 
 struct SearchList: View {
     @State var searchQuery = ""
-    @State var courts = loadFullCSV()
-    let fullCourts = loadFullCSV()
-    @State var courtModels: [CourtModel] = []
+    @State var viewModel: MapViewModel
+    @State var courts: [Court] = []
+    @State var fullCourts: [Court] = []
+    @State var count = 0
+    @ObservedObject var radius: Radius
     var body: some View {
-//        List(courtModels) { court in
-//            Text(court.name)
-//                .foregroundColor(.white)
-//        }
-//        .onAppear {
-//            courtModels = DB_Manager().getUsers()
-//        }
+
         List(courts) { court in
             NavigationLink(destination: CourtInfo(court: court)) {
                 Text(court.name)
             }
         }
-        .searchable(text: $searchQuery, placement: .navigationBarDrawer(displayMode: .always),
-                    prompt: "Search By Court Name")
-        .onSubmit(of: .search) {
-            filterCourts()
+            .onAppear {
+            courts = loadCSV(miles: radius.radius, viewModel: viewModel)
+            fullCourts = loadCSV(miles: radius.radius, viewModel: viewModel)
+
         }
-        .onChange(of: searchQuery) { _ in
-            filterCourts()
+            .searchable(text: $searchQuery, placement: .navigationBarDrawer(displayMode: .always),
+                        prompt: "Search By Court Name")
+            .onSubmit(of: .search) {
+            filterCourts(courts, fullCourts)
         }
-            
+            .onChange(of: searchQuery) { _ in
+            filterCourts(courts, fullCourts)
+        }
     }
-    
-    func filterCourts() {
+
+    func filterCourts(_ courts: [Court], _ fullCourts: [Court]) {
         if searchQuery.isEmpty {
-            courts = fullCourts
+            self.courts = fullCourts
         } else {
-            courts = fullCourts.filter {
+            self.courts = fullCourts.filter {
                 $0.name
                     .localizedCaseInsensitiveContains(searchQuery)
             }

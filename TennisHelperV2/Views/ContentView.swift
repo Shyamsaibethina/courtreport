@@ -1,27 +1,25 @@
-//
-//  ContentView.swift
-//  TennisHelperV2
-//
-//  Created by Shyamsai Bethina on 1/26/22.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @State var viewModel = MapViewModel()
+    @StateObject var radius = Radius()
     var body: some View {
-        TabView{
-            CourtsView()
+        TabView {
+            CourtsView(viewModel: viewModel, radius: radius)
                 .tabItem {
-                    Image(systemName: "location")
-                    Text("Courts")
-                }
-            SearchView()
+                Image(systemName: "location")
+                Text("Courts")
+            }
+            SearchView(viewModel: viewModel, radius: radius)
                 .tabItem {
-                    Image(systemName: "magnifyingglass")
-                    Text("Search")
-                }
+                Image(systemName: "magnifyingglass")
+                Text("Search")
+            }
         }
-        .preferredColorScheme(.dark)
+            .onAppear {
+            viewModel.checkIfLocationServicesIsEnabled()
+        }
+            .preferredColorScheme(.dark)
     }
 }
 

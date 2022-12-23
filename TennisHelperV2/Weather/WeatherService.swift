@@ -1,10 +1,3 @@
-//
-//  WeatherService.swift
-//  TennisHelperV2
-//
-//  Created by Shyamsai Bethina on 3/18/22.
-//
-
 import CoreLocation
 import Foundation
 

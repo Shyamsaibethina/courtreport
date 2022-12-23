@@ -1,17 +1,12 @@
-//
-//  CourtsView.swift
-//  TennisHelperV2
-//
-//  Created by Shyamsai Bethina on 1/27/22.
-//
-
 import MapKit
 import SwiftUI
 
 struct CourtsView: View {
+    @State var viewModel: MapViewModel
+    @ObservedObject var radius: Radius
     var body: some View {
         NavigationView {
-            MapView()
+            MapView(viewModel: viewModel, radius: radius)
                 .navigationTitle("Courts Near You")
         }
     }
@@ -19,6 +14,6 @@ struct CourtsView: View {
 
 struct CourtsView_Previews: PreviewProvider {
     static var previews: some View {
-        CourtsView()
+        CourtsView(viewModel: MapViewModel(), radius: Radius())
     }
 }
