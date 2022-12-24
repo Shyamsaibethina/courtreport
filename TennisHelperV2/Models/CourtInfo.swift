@@ -46,7 +46,7 @@ struct CourtInfo: View {
                     .clipShape(RoundedRectangle(cornerRadius: 25))
                     .offset(y: offsetForMap)
                     .padding()
-                    .confirmationDialog("Pick a map", isPresented: .constant(true)) {
+                    .confirmationDialog("Pick a map", isPresented: $showMapDialog) {
                     Button("Google Maps") {
                         let googleURL = URL(string: "comgooglemaps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)&directionsmode=driving")
                         if UIApplication.shared.canOpenURL(googleURL!) {

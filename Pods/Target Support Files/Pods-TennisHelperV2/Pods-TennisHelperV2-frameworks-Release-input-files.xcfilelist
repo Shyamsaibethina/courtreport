@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-TennisHelperV2/Pods-TennisHelperV2-frameworks.sh
+${BUILT_PRODUCTS_DIR}/KRTournamentView/KRTournamentView.framework
+${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework
+${BUILT_PRODUCTS_DIR}/SwiftSoup/SwiftSoup.framework
