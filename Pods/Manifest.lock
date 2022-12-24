@@ -1,0 +1,26 @@
+PODS:
+  - KRTournamentView (2.0.0)
+  - SQLite.swift (0.13.3):
+    - SQLite.swift/standard (= 0.13.3)
+  - SQLite.swift/standard (0.13.3)
+  - SwiftSoup (2.3.8)
+
+DEPENDENCIES:
+  - KRTournamentView
+  - SQLite.swift (~> 0.13.3)
+  - SwiftSoup
+
+SPEC REPOS:
+  trunk:
+    - KRTournamentView
+    - SQLite.swift
+    - SwiftSoup
+
+SPEC CHECKSUMS:
+  KRTournamentView: 7753c8d0bca45bfb758eb112e73d8e242001700c
+  SQLite.swift: 903bfa3bc9ab06345fdfbb578e34f47cfcf417da
+  SwiftSoup: ba8ea2c91151881a298cba4b0628ef31e835a77f
+
+PODFILE CHECKSUM: 4e50d27559fab441a69a45617bd0a979b9daf904
+
+COCOAPODS: 1.11.3
