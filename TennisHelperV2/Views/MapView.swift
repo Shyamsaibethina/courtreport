@@ -68,19 +68,55 @@ struct MapView: View {
                     .fill(.black)
                     .frame(height: 70)
                     .overlay(
-                    VStack(spacing: 0) {
-                        Text("Courts in \(Int(radius.radius)) radius")
-                        HStack {
-                            Image(systemName: "minus")
-                                .foregroundColor(.red)
-                            Slider(value: $radius.radius, in: 20...100, step: 10)
-                                .tint(.white)
-                            Image(systemName: "plus")
-                                .foregroundColor(.green)
+                    HStack {
+                        Button {
+                            if (radius.radius > 10) {
+                                radius.radius -= 10
+                            } else if (radius.radius > 5) {
+                                radius.radius -= 5
+                            }
+                        } label: {
+                            Image(systemName: "minus.circle")
                         }
-                            .frame(width: UIScreen.main.bounds.width * 0.9)
-                    }
+                            .foregroundStyle(.red)
+                            .font(.system(size: 22, weight: .bold, design: .rounded))
+                            .padding(.bottom)
+                        VStack {
+                            Text("\(Int(radius.radius))")
+                                .font(.system(size: 30, weight: .bold, design: .rounded))
+                            Text("mile radius")
+                        }
 
+                        Button {
+                            if (radius.radius < 100) {
+                                if (radius.radius < 10) {
+                                    radius.radius += 5
+                                } else {
+                                    radius.radius += 10
+                                }
+                            }
+                        } label: {
+                            Image(systemName: "plus.circle")
+                        }
+                            .foregroundStyle(.green)
+                            .font(.system(size: 22, weight: .bold, design: .rounded))
+                            .padding(.bottom)
+                    }
+//                    VStack(spacing: 0) {
+//                        Text("Courts in a ") +
+//                            Text("\(Int(radius.radius))")
+//                            .foregroundColor(.green) +
+//                            Text(" mile radius")
+//                        HStack {
+//                            Image(systemName: "minus")
+//                                .foregroundColor(.red)
+//                            Slider(value: $radius.radius, in: 20...100, step: 10)
+//                                .tint(.white)
+//                            Image(systemName: "plus")
+//                                .foregroundColor(.green)
+//                        }
+//                            .frame(width: UIScreen.main.bounds.width * 0.9)
+//                    }
                 )
             }
 

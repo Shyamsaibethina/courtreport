@@ -22,6 +22,7 @@ struct CourtInfo: View {
     @State var forecast: ForecastBody?
     var googleMaps = false
     @State private var showMapDialog = false
+    @State private var didTap: Bool = false
 
     @State var timeText = 0
     var weatherAltered = ["Clouds": "Cloudy",
@@ -37,10 +38,16 @@ struct CourtInfo: View {
     var body: some View {
         ScrollView(showsIndicators: true) {
             VStack {
-                Map(coordinateRegion: .constant(MKCoordinateRegion(center: court.coordinate.locationCoordinate(), span: MapDetails.defaultSpan)), showsUserLocation: true, annotationItems: [court])
-                {
-                    court in
-                    MapMarker(coordinate: court.coordinate.locationCoordinate())
+                ZStack(alignment: .bottom) {
+                    Map(coordinateRegion: .constant(MKCoordinateRegion(center: court.coordinate.locationCoordinate(), span: MapDetails.defaultSpan)), showsUserLocation: true, annotationItems: [court])
+                    {
+                        court in
+                        MapMarker(coordinate: court.coordinate.locationCoordinate())
+                    }
+                    Text("Click here for directions")
+                        .font(.system(size: 20, weight: .bold, design: .rounded))
+                        .underline()
+                        .padding(.bottom, 5)
                 }
                     .frame(width: ScreenBounds.width * 0.95, height: 175 * scale, alignment: .top)
                     .clipShape(RoundedRectangle(cornerRadius: 25))
@@ -81,6 +88,7 @@ struct CourtInfo: View {
                     .offset(y: offsetForMap)
                     .minimumScaleFactor(0.7)
                     .frame(width: ScreenBounds.width * 0.95, height: 50)
+                
 
                 HStack(alignment: .center, spacing: 70) {
                     // DRIVE TIME
@@ -89,6 +97,7 @@ struct CourtInfo: View {
                             .font(.system(size: 40.0))
                             .foregroundColor(.blue)
                             .offset(y: offsetForIcons)
+
 
                         Divider()
                             .frame(width: 120, height: 5)
@@ -116,40 +125,14 @@ struct CourtInfo: View {
                         .overlay(RoundedRectangle(cornerRadius: 25)
                         .stroke(.blue, lineWidth: 5)
                         .frame(width: 160, height: 160))
-                        .confirmationDialog("Pick a map", isPresented: $showMapDialog) {
-                        Button("Google Maps") {
-                            let googleURL = URL(string: "comgooglemaps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)&directionsmode=driving")
-                            if UIApplication.shared.canOpenURL(googleURL!) {
-                                UIApplication.shared.open(googleURL!, options: [:], completionHandler: nil)
-                            } else {
-                                print("Can't use comgooglemaps://")
-                            }
-                        }
-                        Button("Apple Maps") {
-                            let url = URL(string: "maps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)")
-                            if UIApplication.shared.canOpenURL(url!) {
-                                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
-                            }
-                        }
-                    }
-                        .onTapGesture {
-                        let googleURL = URL(string: "comgooglemaps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)&directionsmode=driving")
-                        if UIApplication.shared.canOpenURL(googleURL!) {
-                            self.showMapDialog = true
-                        } else {
-                            let url = URL(string: "maps://?saddr=&daddr=\(court.coordinate.latitude),\(court.coordinate.longitude)")
-                            if UIApplication.shared.canOpenURL(url!) {
-                                UIApplication.shared.open(url!, options: [:], completionHandler: nil)
-                            }
-                        }
-                    }
 
-                    // LIGHTS AND COURTS
+
+                    // Number of COURTS
                     VStack {
-                        Image(systemName: court.lights == "TRUE" ? "lightbulb" : "lightbulb.slash")
+                        Image(systemName: "mappin.and.ellipse")
                             .font(.system(size: 40.0))
-                            .foregroundColor(court.lights == "TRUE" ? .green : .red)
-                            .offset(y: offsetForIcons)
+                            .foregroundColor(.blue)
+                            .offset(y: offsetForIcons - 1)
 
                         Divider()
                             .frame(width: 120, height: 5)
@@ -157,22 +140,131 @@ struct CourtInfo: View {
                             .clipShape(RoundedRectangle(cornerRadius: 25))
                             .offset(y: offsetForDivider - 6)
 
+
                         Text(court.count)
                             .italic()
                             .font(.system(size: 50, weight: .bold, design: .rounded))
                             .offset(y: offsetForTime - 7)
 
-                        Text("courts")
+                        Text((Int(court.count) == 1) ? "court" : "courts")
                             .offset(y: offsetForTime - 7)
                     }
                         .overlay(RoundedRectangle(cornerRadius: 25)
-                        .stroke(court.lights == "TRUE" ? .green : .red, lineWidth: 5)
+                        .stroke(.blue, lineWidth: 5)
                         .frame(width: 160, height: 160))
                 }
                     .offset(y: offsetForMap + 20)
 
-                // TYPE OF COURTS
+
+
+
                 HStack(alignment: .center, spacing: 70) {
+                    // Indoor
+                    VStack {
+                        if #available(iOS 16.0, *) {
+                            Image(systemName: "house.lodge")
+                                .foregroundColor(court.indoor == "TRUE" ? .green:
+                                .red)
+                                .font(.system(size: 50))
+                                .offset(y: offsetForIcons - 20)
+                        } else {
+                            Image(systemName: "house")
+                                .foregroundColor(court.indoor == "TRUE" ? .green:
+                                .red)
+                                .font(.system(size: 50))
+                                .offset(y: offsetForIcons - 20)
+                        }
+
+
+                        Divider()
+                            .frame(width: 120, height: 5)
+                            .background(.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 25))
+                            .offset(y: offsetForDivider - 20)
+
+                        VStack(alignment: .center) {
+                            Text("Indoor Courts: ")
+                            Text(court.indoor == "TRUE" ? "Available" : "Not Available")
+                                .font(.system(size: 22, weight: .bold, design: .rounded))
+                                .foregroundColor(court.indoor == "TRUE" ? .green : .red)
+                                .padding(.bottom, 1)
+                        }
+                    }
+                        .overlay(RoundedRectangle(cornerRadius: 25)
+                        .stroke(court.indoor == "TRUE" ? .green : .red, lineWidth: 5)
+                        .frame(width: 160, height: 160))
+                        .onAppear {
+                        getWaitTime(court, completion: { time in
+                            timeText = time!
+                        })
+                    }
+
+                    
+                    // Lighting
+                    VStack {
+                        Image(systemName: court.lights == "TRUE" ? "lightbulb" : "lightbulb.slash")
+                            .foregroundColor(court.lights == "TRUE" ? .green : .red)
+                            .font(.system(size: 40))
+                            .offset(y: offsetForIcons - 16)
+
+
+                        Divider()
+                            .frame(width: 120, height: 5)
+                            .background(.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 25))
+                            .offset(y: offsetForDivider - 21)
+
+                        VStack(alignment: .center) {
+                            Text("Lighting:")
+                            Text(court.lights == "TRUE" ? "Available" : "Not Available")
+                                .font(.system(size: 22, weight: .bold, design: .rounded))
+                                .foregroundColor(court.lights == "TRUE" ? .green : .red)
+                                .padding(.bottom, 1)
+                        }
+                            .padding(.bottom, 6)
+                    }
+
+                        .overlay(RoundedRectangle(cornerRadius: 25)
+                        .stroke(court.lights == "TRUE" ? .green : .red, lineWidth: 5)
+                        .frame(width: 160, height: 160))
+                        .offset(x: court.lights == "TRUE" ? -9: -18)
+
+                }
+                .padding(.leading, court.lights == "TRUE" ? 0: 20)
+                .padding(.bottom, 40)
+
+                HStack(spacing: 50) {
+                    // PROSHOP
+                    VStack {
+                        Image(systemName: court.proshop == "TRUE" ?
+                        "cart.badge.plus": "cart.badge.minus")
+                            .foregroundColor(court.proshop == "TRUE" ? .green : .red)
+                            .font(.system(size: 50))
+                            .offset(x: -5, y: offsetForIcons - 10)
+
+
+                        Divider()
+                            .frame(width: 120, height: 5)
+                            .background(.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 25))
+                            .offset(y: offsetForDivider - 15)
+
+                        VStack(alignment: .center) {
+                            Text("Proshop:")
+                            Text(court.proshop == "TRUE" ? "Available" : "Not Available")
+                                .font(.system(size: 22, weight: .bold, design: .rounded))
+                                .foregroundColor(court.proshop == "TRUE" ? .green : .red)
+                                .padding(.bottom, 1)
+                        }
+                            .padding(.bottom)
+                    }
+
+                        .overlay(RoundedRectangle(cornerRadius: 25)
+                        .stroke(court.proshop == "TRUE" ? .green : .red, lineWidth: 5)
+                        .frame(width: 160, height: 160))
+                        //.offset(x: -19)
+
+                    // Types of Courts
                     HStack(spacing: 0) {
                         VStack(alignment: .leading, spacing: 23) {
                             Text("Clay:")
@@ -203,75 +295,12 @@ struct CourtInfo: View {
                         }
                     }
                         .overlay(RoundedRectangle(cornerRadius: 25)
-                        .stroke(.indigo, lineWidth: 5)
+                        .stroke(LinearGradient(gradient: Gradient(stops: [.init(color: court.clay == "TRUE" ? .green : .red, location: 0.30), .init(color: court.grass == "TRUE" ? .green : .red, location: 0.60), .init(color: court.wall == "TRUE" ? .green : .red, location: 1.0)]), startPoint: .top, endPoint: .bottom), lineWidth: 5)
                         .frame(width: 160, height: 160))
-                        .padding(.leading)
-
-                    // INDOOR and PROSHOP
-                    VStack {
-                        HStack {
-                            VStack {
-                                Image(systemName: court.proshop == "TRUE" ?
-                                "cart.badge.plus": "cart.badge.minus")
-                                    .foregroundColor(court.proshop == "TRUE" ? .green : .red)
-                                    .font(.system(size: 50))
-                                    .offset(x: -5, y: offsetForIcons - 10)
-
-
-                                Divider()
-                                    .frame(width: 120, height: 5)
-                                    .background(.white)
-                                    .clipShape(RoundedRectangle(cornerRadius: 25))
-                                    .offset(y: offsetForDivider - 15)
-
-                                VStack(alignment: .center) {
-                                    Text("Proshop:")
-                                    Text(court.proshop == "TRUE" ? "Available" : "Not Available")
-                                        .font(.system(size: 22, weight: .bold, design: .rounded))
-                                        .foregroundColor(court.proshop == "TRUE" ? .green : .red)
-                                        .padding(.bottom, 1)
-                                }
-                                    .padding(.bottom)
-                            }
-                        }
-                            .overlay(RoundedRectangle(cornerRadius: 25)
-                            .stroke(.orange, lineWidth: 5)
-                            .frame(width: 160, height: 160))
-                            .offset(x: -19)
-                    }
+                        //.padding(.trailing, -10)
                 }
+                
 
-                VStack {
-                    Image(systemName: "house.lodge")
-                        .foregroundColor(court.indoor == "TRUE" ? .green:
-                        .red)
-                        .font(.system(size: 50))
-                        .offset(y: offsetForIcons - 20)
-
-                    Divider()
-                        .frame(width: 120, height: 5)
-                        .background(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 25))
-                        .offset(y: offsetForDivider - 20)
-
-                    VStack(alignment: .center) {
-                        Text("Indoor Courts: ")
-                        Text(court.indoor == "TRUE" ? "Available" : "Not Available")
-                            .font(.system(size: 22, weight: .bold, design: .rounded))
-                            .foregroundColor(court.indoor == "TRUE" ? .green : .red)
-                            .padding(.bottom, 1)
-                    }
-                }
-                    .overlay(RoundedRectangle(cornerRadius: 25)
-                    .stroke(.cyan, lineWidth: 5)
-                    .frame(width: 160, height: 160))
-                    .onAppear {
-                    getWaitTime(court, completion: { time in
-                        timeText = time!
-                    })
-                }
-                    .padding(.top, 50)
-                    .padding(.bottom)
 
                 // WEATHER VIEW
                 VStack {
@@ -400,7 +429,7 @@ struct CourtInfo: View {
                                         .symbolRenderingMode(.palette)
                                         .foregroundStyle(.gray)
 
-                                    Text("\(Int(forecast.hourly[0].wind_speed))m/s")
+                                    Text("\(Int(forecast.hourly[0].wind_speed)) m/s")
                                 }
                             }
                         }
@@ -422,7 +451,7 @@ struct CourtInfo: View {
                 .padding(.bottom, 10)
         }
             .background(
-            LinearGradient(gradient: Gradient(stops: [.init(color: .black, location: 0.8), .init(color: .gray, location: 1.0)]), startPoint: .top, endPoint: .bottom)
+            LinearGradient(gradient: Gradient(stops: [.init(color: .black, location: 0.5), .init(color: .gray, location: 1.0)]), startPoint: .top, endPoint: .bottom)
         )
     }
 
